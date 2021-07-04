@@ -1,0 +1,17 @@
+.p-top {
+  position: relative;
+  margin-top: -#{$headerHeight};
+  .p-top-row {
+    padding: 50px 0;
+  }
+  .p-top-row:nth-child(even) {
+    background: $lightGrey;
+  }
+
+  @include media() {
+    margin-top: -#{$headerMdHeight};
+    .p-top-row {
+      padding: 30px 0 0;
+    }
+  }
+}

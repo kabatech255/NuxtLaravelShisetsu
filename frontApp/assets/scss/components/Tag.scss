@@ -1,0 +1,145 @@
+.Tag {
+  position: relative;
+  display: inline-block;
+  font-size: $fontSizeSm;
+  border-radius: $radiusBasis;
+  border: 1px solid $primaryColor;
+  padding: 3px 5px;
+  background: $primaryColor;
+  text-align: center;
+  cursor: pointer;
+  z-index: 1;
+  overflow: hidden;
+  outline: none;
+
+  .Tag_ripple {
+    @include rippleEffect();
+  }
+  .Tag_label {
+    color: $white;
+    pointer-events: none;
+  }
+  &.--rounded {
+    border-radius: 9999px;
+  }
+  &.--outlined {
+    border-color: $primaryColor;
+    background: transparent;
+    .Tag_ripple {
+      background-color: rgba(lighten($primaryColor, 20%), 0.8);
+    }
+    .Tag_label {
+      color: $primaryColor;
+    }
+    &.--pink {
+      background: $white;
+      border-color: $pink;
+      .Tag_label {
+        color: $pink;
+      }
+      .Tag_ripple {
+        background-color: rgba(lighten($pink, 20%), 0.8);
+      }
+    }
+  }
+  &.--roundless {
+    border-radius: 0;
+  }
+  &.--pink {
+    background: $pink;
+    border-color: $pink;
+  }
+  &.--error {
+    background: $errorColor;
+    border-color: $errorColor;
+  }
+  &.--white {
+    background-color: $white;
+  }
+
+  &.--min100 {
+    min-width: 100px;
+  }
+
+  &.--cancel {
+    background: $grey2;
+    border-color: $grey2;
+  }
+
+  &.--disabled {
+    cursor: not-allowed;
+    background: $grey;
+    border-color: $grey;
+    pointer-events: none;
+    .Tag_label {
+      color: $white;
+    }
+    &:hover {
+      transform: none;
+      box-shadow: 0 4px 10px -6px $darkBlue2;
+    }
+  }
+
+  &.--fixed {
+    position: fixed;
+    bottom: 10px;
+    left: 50%;
+    transform: translate3d(-50%, 0, 0);
+    &:hover, &:focus {
+      transform: translate3d(-50%, 2px, 0);
+      box-shadow: none;
+    }
+    &:active {
+      transform: translate3d(-50%, 2px, 0);
+      box-shadow: none;
+    }
+  }
+
+  &.--text {
+    background: transparent;
+    border-radius: 0;
+    border: none;
+    font-size: 1.4rem;
+    padding: 0;
+    @include resetClickStyle();
+    .Tag_label {
+      color: $blue;
+      font-weight: bold;
+    }
+    &.--disabled {
+      pointer-events: none;
+      .Tag_label {
+        color: $grey2;
+      }
+    }
+    .Tag_ripple {
+      @include resetRippleEffect();
+    }
+  }
+
+  &.--circle {
+    width: 45px;
+    height: 45px;
+    border-radius: 9999px;
+    background: $white;
+    border: 2px solid $pink;
+    padding: 4px;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+    transition: $transitionBasis;
+    @include baseClickStyle();
+    .Tag_ripple {
+      @include rippleEffect();
+      background-color: rgba(lighten($pink, 20%), 0.8);
+    }
+  }
+
+  &.--large {
+    padding: 10px 12px;
+    font-size: 1.4rem;
+    border-width: 2px;
+    @include baseBoxShadow();
+  }
+
+}

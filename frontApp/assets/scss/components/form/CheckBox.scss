@@ -1,0 +1,52 @@
+.CheckBox {
+  display: block;
+  transition: $transitionBasis;
+  position: relative;
+  .CheckBox_label {
+    line-height: 1;
+  }
+  .CheckBox_done {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translate3d(-2px, -50%, 0);
+    display: none;
+    pointer-events: none;
+    color: $primaryColor;
+    &.--done {
+      display: inline-block;
+    }
+  }
+  .CheckBox_prependIcon {
+    vertical-align: middle;
+    font-size: $iconSize2;
+    margin-right: 5px;
+  }
+  .CheckBox_body {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    padding: 2px;
+    border: 2px solid $grey2;
+    &:checked {
+      border-color: $primaryColor;
+    }
+    &:disabled {
+      border-color: transparent;
+      &+ label {
+        color: $fontColorBasis;
+        font-size: $fontSizeBasis;
+      }
+    }
+  }
+
+  &.--error {
+    .CheckBox_body {
+      border-color: $errorColor;
+    }
+
+    .CheckBox_label {
+      color: $errorColor;
+    }
+  }
+}

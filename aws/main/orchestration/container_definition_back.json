@@ -1,0 +1,103 @@
+[
+  {
+    "name": "web",
+    "portMappings": [
+      {
+        "hostPort": 0,
+        "protocol": "tcp",
+        "containerPort": 80
+      }
+    ],
+
+    "image": "015211996394.dkr.ecr.ap-northeast-1.amazonaws.com/risk-exam/web:latest",
+    "cpu": 8,
+    "memoryReservation": 256,
+    "essential": true,
+    "links": [
+      "app:app"
+    ],
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "secretOptions": null,
+      "options": {
+        "awslogs-group": "${log_groups.0}",
+        "awslogs-region": "ap-northeast-1",
+        "awslogs-stream-prefix": "${log_groups.0}"
+      }
+    }
+  },
+  {
+    "name": "app",
+    "image": "015211996394.dkr.ecr.ap-northeast-1.amazonaws.com/risk-exam/app:latest",
+    "cpu": 8,
+    "memoryReservation": 256,
+    "essential": true,
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "secretOptions": null,
+      "options": {
+        "awslogs-group": "${log_groups.1}",
+        "awslogs-region": "ap-northeast-1",
+        "awslogs-stream-prefix": "${log_groups.1}"
+      }
+    },
+    "secrets": [
+      {
+        "valueFrom": "/RiskExam/db_connection",
+        "name": "DB_CONNECTION"
+      },
+      {
+        "valueFrom": "/RiskExam/db_name",
+        "name": "DB_DATABASE"
+      },
+      {
+        "valueFrom": "/RiskExam/db_host",
+        "name": "DB_HOST"
+      },
+      {
+        "valueFrom": "/RiskExam/db_pass",
+        "name": "DB_PASSWORD"
+      },
+      {
+        "valueFrom": "/RiskExam/db_port",
+        "name": "DB_PORT"
+      },
+      {
+        "valueFrom": "/RiskExam/db_user",
+        "name": "DB_USERNAME"
+      },
+      {
+        "valueFrom": "/RiskExam/aws_access_key_id",
+        "name": "AWS_ACCESS_KEY_ID"
+      },
+      {
+        "valueFrom": "/RiskExam/aws_secret_access_key",
+        "name": "AWS_SECRET_ACCESS_KEY"
+      },
+      {
+        "valueFrom": "/RiskExam/aws_default_region",
+        "name": "AWS_DEFAULT_REGION"
+      },
+      {
+        "valueFrom": "/RiskExam/aws_bucket",
+        "name": "AWS_BUCKET"
+      },
+      {
+        "valueFrom": "/RiskExam/aws_url",
+        "name": "AWS_URL"
+      },
+      {
+        "valueFrom": "/RiskExam/app_test_id",
+        "name": "APP_TEST_ID"
+      },
+      {
+        "valueFrom": "/RiskExam/app_test_pass",
+        "name": "APP_TEST_PASS"
+      },
+      {
+        "valueFrom": "/RiskExam/log_channel",
+        "name": "LOG_CHANNEL"
+      }
+    ]
+  }
+]

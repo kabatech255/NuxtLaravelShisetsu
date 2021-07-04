@@ -1,0 +1,147 @@
+.MyPageHeader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: $headerZIndex;
+  transition: $transitionBasis;
+  &.--transparent {
+    .MyPageHeader_menuItem {
+      color: $white;
+      @include media() {
+        color: $fontColorBasis;
+      }
+    }
+    .MyPageHeader_row {
+      &::after {
+        background: transparent;
+        box-shadow: none;
+      }
+      .MyPageHeader_menuIcon {
+        color: $white;
+      }
+    }
+  }
+  &:hover {
+    .MyPageHeader_row::after {
+      @include baseHeaderStyle();
+    }
+    .MyPageHeader_menuItem {
+      color: $fontColorBasis;
+    }
+    .MyPageHeader_row {
+      .MyPageHeader_menuIcon {
+        color: $fontColorBasis;
+      }
+    }
+  }
+
+  .MyPageHeader_row {
+    display: flex;
+    align-items: center;
+    position: relative;
+
+    &::after {
+      transition: $transitionBasis;
+      content: '';
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: -1;
+      opacity: $opacityBasis;
+      @include baseHeaderStyle();
+    }
+    .MyPageHeader_menuIcon {
+      display: inline-block;
+      cursor: pointer;
+      position: absolute;
+      top: 50%;
+      right: 15px;
+      transform: translate3d(0, -50%, 0);
+      color: $fontColorBasis;
+    }
+  }
+
+  .MyPageHeader_logo {
+    flex-shrink: 0;
+    padding: 10px;
+  }
+
+  .MyPageHeader_nav {
+    flex-grow: 1;
+    position: fixed;
+    top: 5px;
+    right: 0;
+    bottom: 5px;
+    z-index: 2;
+    transition: $transitionBasis;
+    &.--hidden {
+      right: -100%;
+    }
+    width: 70%;
+    min-width: 260px;
+    max-width: 400px;
+    background: $white;
+    border-radius: $radiusBasis 0 0 #{$radiusBasis} / $radiusBasis 0 0 $radiusBasis;
+    box-shadow: 1px 1px 30px -8px darken($black, 25%);
+    .MyPageHeader_navTitle {
+      display: block;
+      font-size: $fontSizeXl;
+      text-align: center;
+      padding: 20px 0;
+      font-weight: normal;
+    }
+    .MyPageHeader_menu {
+      flex-direction: column;
+      align-items: stretch;
+      justify-content: flex-start;
+      width: 100%;
+    }
+  }
+
+  .MyPageHeader_menu {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+  .MyPageHeader_menuItem {
+    width: 100%;
+    &:hover {
+      color: $white;
+    }
+  }
+
+  .MyPageHeader_overlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background: $black;
+    opacity: $opacityBasis;
+    z-index: 1;
+    transition: $transitionBasis;
+    &.--hidden {
+      background: transparent;
+      pointer-events: none;
+    }
+  }
+
+  .MyPageHeader_authItem {
+    min-width: 100px;
+    z-index: 1;
+    padding: 8px 0;
+    display: inline-block;
+    flex-grow: 1;
+    text-align: right;
+  }
+
+  @include media() {
+    .MyPageHeader_nav {
+      bottom: calc(#{$mdSidebarHeight} + 5px);
+    }
+  }
+}

@@ -1,0 +1,188 @@
+.ExamRecordLayout {
+  width: 100%;
+  height: 100%;
+  overflow-y: hidden;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  .--smOnly,
+  .--lgOnly {
+    display: none;
+  }
+  .--smNone {
+    display: block;
+  }
+  .ExamRecordLayout_head {
+    padding: 10px 0 20px;
+    flex-shrink: 0;
+    position: relative;
+    box-shadow: 0 1px 8px -5px $black;
+    @include baseBoxShadow(5px, 12px, -10px, $darkBlue2);
+  }
+  .ExamRecordLayout_headRow {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    position: relative;
+    padding: 15px 30px;
+    border-bottom: 1px solid $grey2;
+    color: $grey3;
+    &:not(:first-of-type) {
+      padding: 30px 30px 15px;
+      @include media() {
+        padding: 15px 30px;
+      }
+      @include media('sm') {
+        padding: 0;
+      }
+    }
+    &:last-of-type {
+      border-bottom: none;
+    }
+    .ExamRecordLayout_headCol {
+      flex-shrink: 0;
+      &.--fill {
+        flex: 1 1 auto;
+        max-width: calc(100% - 80px);
+        margin: 0 auto;
+        overflow-x: hidden;
+      }
+      &.--absRight {
+        position: absolute;
+        top: 50%;
+        right: 30px;
+        transform: translate3d(0, -50%, 0);
+      }
+      &.--absLeft {
+        position: absolute;
+        top: 50%;
+        left: 30px;
+        transform: translate3d(0, -50%, 0);
+      }
+    }
+  }
+  .ExamRecordLayout_narrowingTag {
+    display: none;
+    padding: 15px;
+  }
+  .ExamRecordLayout_body {
+    width: 100%;
+    height: 100%;
+    max-width: $baseWidth;
+    margin: 0 auto;
+    padding: 0 12.5px 12.5px;
+    flex-grow: 1;
+    overflow-y: scroll;
+    @include baseScrollbarStyle();
+    &.--nothing {
+      padding: 0 12.5px;
+    }
+    .ExamRecordLayout_pager {
+      margin: 5px 15px;
+    }
+    .ExamRecordLayout_list {
+      max-width: 100%;
+      //overflow-x: hidden;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      justify-content: flex-start;
+      //min-height: 300px;
+    }
+    .ExamRecordLayout_item {
+      padding: 15px;
+      width: calc(100% / 4);
+    }
+  }
+  .ExamRecordLayout_operator {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .ExamRecordLayout_toggleList {
+    display: none;
+  }
+
+  @include media('xl') {
+    .ExamRecordLayout_body .ExamRecordLayout_item {
+      width: calc(100% / 3);
+    }
+  }
+
+  @include media('lg') {
+    .ExamRecordLayout_head {
+      padding: 0;
+    }
+    .ExamRecordLayout_toggleList {
+      display: inline-block;
+    }
+    .--lgOnly {
+      display: block;
+    }
+  }
+  @include media('sm-w') {
+    .ExamRecordLayout_body .ExamRecordLayout_item {
+      width: calc(100% / 2);
+    }
+  }
+  @include media('sm') {
+    .--smOnly {
+      display: block;
+    }
+    .--lgOnly {
+      display: none;
+    }
+    .--smNone {
+      display: none;
+    }
+    .ExamRecordLayout_head {
+      position: fixed;
+      display: block;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding-top: $headerMdHeight;
+      background: $bgGrey;
+    }
+    .ExamRecordLayout_body {
+      padding: $headerMdHeight 12.5px 70px;
+      &.--nothing {
+        padding: 60px 12.5px 0;
+      }
+      .ExamRecordLayout_list {
+        display: block;
+        margin: 0 auto;
+        width: 100%;
+        .ExamRecordLayout_item {
+          width: 100%;
+        }
+      }
+      .ExamRecordLayout_narrowingTag {
+        display: block;
+      }
+    }
+    .ExamRecordLayout_operator {
+      position: fixed;
+      right: initial;
+      left: 20px;
+      bottom: 60px;
+    }
+  }
+
+  // z-index
+  .ExamRecordLayout_body {
+    z-index: 0;
+  }
+  .ExamRecordLayout_head {
+    z-index: 1;
+    .ExamRecordLayout_headRow:first-of-type {
+      z-index: 1;
+    }
+  }
+  .ExamRecordLayout_operator {
+    z-index: 2;
+  }
+}

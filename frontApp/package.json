@@ -1,0 +1,48 @@
+{
+  "name": "riskexam",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "HOST=0.0.0.0 PORT=3000 nuxt-ts",
+    "build": "nuxt-ts build",
+    "start": "HOST=0.0.0.0 PORT=3000 nuxt-ts start",
+    "generate": "nuxt-ts generate",
+    "lint:js": "eslint --ext .ts,.vue --ignore-path .gitignore .",
+    "lint": "yarn lint:js",
+    "clear-hard-source-cache": "rm -rf node_modules/.cache/hard-source/"
+  },
+  "dependencies": {
+    "@coreui/coreui": "^3.4.0",
+    "@coreui/vue": "^3.2.7",
+    "@coreui/vue-chartjs": "^1.0.6",
+    "@nuxt/typescript-runtime": "^2.0.0",
+    "@nuxtjs/axios": "^5.12.2",
+    "@nuxtjs/dotenv": "^1.4.1",
+    "@nuxtjs/proxy": "^2.0.1",
+    "@types/lodash": "^4.14.167",
+    "core-js": "^3.8.2",
+    "nuxt": "^2.14.6",
+    "v-calendar": "^2.2.0"
+  },
+  "devDependencies": {
+    "@nuxt/types": "^2.14.6",
+    "@nuxt/typescript-build": "^2.0.3",
+    "@nuxtjs/eslint-config": "^3.1.0",
+    "@nuxtjs/eslint-config-typescript": "^3.0.0",
+    "@nuxtjs/eslint-module": "^2.0.0",
+    "@nuxtjs/style-resources": "^1.0.0",
+    "@vue/cli": "^4.5.9",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.10.0",
+    "eslint-config-prettier": "^6.12.0",
+    "eslint-plugin-nuxt": "^1.0.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "materialize-css": "^1.0.0-rc.2",
+    "node-sass": "^5.0.0",
+    "nuxt-property-decorator": "^2.8.8",
+    "prettier": "^2.1.2",
+    "sass-loader": "^10.1.0",
+    "vue-loaders": "^4.1.1",
+    "vue-scrollto": "^2.20.0",
+    "vue-template-compiler": "^2.6.12"
+  }
+}

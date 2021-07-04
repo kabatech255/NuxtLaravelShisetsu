@@ -1,0 +1,56 @@
+.ColorPanel {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &.--isClick {
+    cursor: pointer;
+    transition: $transitionBasis;
+    &:active {
+      background: $cream;
+    }
+  }
+  .ColorPanel_content {
+    color: $white;
+    &.--fontBlack {
+      color: $fontColorBasis;
+    }
+  }
+  .ColorPanel_overlay {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.6;
+    z-index: -1;
+  }
+  .ColorPanel_authIcon {
+    @include tooltipStyle(attr(data-author)'');
+  }
+  .ColorPanel_inner {
+    display: flex;
+    flex-direction: column;
+    height: 58px;
+    @include media('sm') {
+      padding: 2px 0;
+    }
+    align-items: center;
+    justify-content: space-between;
+  }
+  .ColorPanel_icon {
+    width: 35px;
+  }
+  .ColorPanel_label {
+    line-height: 1.5;
+    margin-top: 3px;
+  }
+
+  @include media('sm') {
+    padding: 5px 0;
+  }
+}

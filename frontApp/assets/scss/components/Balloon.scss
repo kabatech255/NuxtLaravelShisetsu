@@ -1,0 +1,43 @@
+.Balloon {
+  display: block;
+  width: 100%;
+  min-width: 60px;
+  background: $white;
+  border: 1px solid transparent;
+  position: relative;
+  @include baseBoxShadow(4px, 12px, -9px, $darkBlue2);
+  &.--hasBorder {
+    border: 1px solid $grey2;
+    &::before {
+      border-color: transparent transparent $grey2 transparent;
+    }
+  }
+  //吹き出しのボーダー部分
+  &::before {
+    content: '';
+    display: block;
+    width: 0;
+    height: 0;
+    position: absolute;
+    top: -28px;
+    right: 7px;
+    border-width: 14px 7px 14px 7px;
+    border-style: solid;
+    border-color: transparent transparent $white transparent;
+    pointer-events: none;
+  }
+  //吹き出しの中の部分
+  &::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 0;
+    position: absolute;
+    top: -26px;
+    right: 7px;
+    border-width: 14px 7px 14px 7px;
+    border-style: solid;
+    border-color: transparent transparent $white transparent;
+    pointer-events: none;
+  }
+}

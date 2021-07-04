@@ -1,0 +1,24 @@
+.BorderButton {
+  display: inline-block;
+  border-radius: $radiusBasis;
+  border: 2px solid $buttonBaseColor;
+  padding: 8px 12px;
+  color: $buttonBaseColor;
+  font-size: 1.4rem;
+  text-align: center;
+  cursor: pointer;
+  z-index: 1;
+  overflow: hidden;
+  outline: none;
+  @include baseClickStyle();
+
+  &.--roundish {
+    min-width: $buttonBaseWidth;
+    border-radius: 9999px;
+  }
+
+  &:hover {
+    background: $buttonBaseColor;
+    color: $white;
+  }
+}

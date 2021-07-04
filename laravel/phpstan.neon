@@ -1,0 +1,18 @@
+parameters:
+  level: 0
+  paths:
+    - tests
+    - app/Http/Controllers
+    - app/Models
+    - app/Services
+    - app/Repositories
+  autoload_files:
+    - _ide_helper.php
+    - vendor/autoload.php
+  fileExtensions:
+    - php
+  ignoreErrors:
+    - '#Call to an undefined static method Illuminate\\Support\\Arr::[a-zA-Z0-9\\_]+\(\)#'
+    - '#Call to an undefined static method Illuminate\\Support\\Str::[a-zA-Z0-9\\_]+\(\)#'
+    - '#Call to an undefined static method Illuminate\\Support\\Facades\\Storage::[a-zA-Z0-9\\_]+\(\)#'
+  reportUnmatchedIgnoredErrors: false

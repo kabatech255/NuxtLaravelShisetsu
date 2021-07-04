@@ -1,0 +1,14 @@
+.ScrollButton {
+  display: block;
+  position: fixed;
+  bottom: 20px;
+  right: 10px;
+  z-index: calc(#{$loaderZIndex} - 1);
+  transition: $transitionBasis;
+  &.--hidden {
+    transform: translate3d(0, calc(100% + 60px), 0);
+  }
+  &.--barUp {
+    bottom: 60px;
+  }
+}

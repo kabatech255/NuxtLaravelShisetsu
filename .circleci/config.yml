@@ -1,0 +1,189 @@
+version: 2.1
+orbs:
+  slack: circleci/slack@4.1.1
+
+jobs:
+  build:
+    docker:
+      # Specify the version you desire here
+      - image: circleci/php:7.3-node-browsers
+
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - save_cache:
+          key: k1-repo-{{ .Environment.CIRCLE_SHA1 }}
+          paths:
+            - ~/repo
+
+  test:
+    docker:
+      - image: circleci/php:7.3-node-browsers
+        environment:
+          MYSQL_HOST: 127.0.0.1
+          MYSQL_USERNAME: "root"
+          MYSQL_PASSWORD: ""
+          MYSQL_PORT: 3306
+
+      - image: mysql:5.7
+        environment:
+          MYSQL_DATABASE: risk_exam
+          MYSQL_ALLOW_EMPTY_PASSWORD: true
+          MYSQL_ROOT_HOST: "%"
+
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - restore_cache:
+          key: k1-repo-{{ .Environment.CIRCLE_SHA1 }}
+
+      - run:
+          name: Install PHP-Extension
+          command: |
+            sudo apt update
+            sudo apt install -y libpng-dev
+            sudo docker-php-ext-install zip gd
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+            # "composer.lock" can be used if it is committed to the repo
+            - k2-dependencies-{{ checksum "laravel/composer.json" }}
+
+      - run:
+          name: Install Composer
+          working_directory: laravel
+          command: |
+            composer install -n --prefer-dist
+            echo $ENV_FILE | base64 --decode > .env
+
+      - save_cache:
+          key: k2-dependencies-{{ checksum "laravel/composer.json" }}
+          paths:
+            - ./vendor
+
+      - run:
+          name: Setup SQLite
+          working_directory: laravel
+          command: |
+            touch storage/testing.sqlite
+            php artisan migrate --env=testing --database=sqlite_testing --force
+      - run:
+          name: Run PHPunit
+          working_directory: laravel
+          command: |
+            vendor/bin/phpunit -d memory_limit=2048M --filter 'Feature' --debug
+      - run:
+          name: Lint PHP
+          working_directory: laravel
+          command: |
+            composer phpstan
+
+  notify:
+    docker:
+      - image: "cimg/base:stable"
+    steps:
+      - slack/notify:
+          channel: random
+          event: fail
+          mentions: "@kaba_farm"
+          template: basic_fail_1
+      - slack/notify:
+          event: pass
+          template: success_tagged_deploy_1
+
+  deploy:
+    docker:
+      - image: circleci/python
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: install aws
+          command: |
+            sudo pip install awscli
+      - run:
+          name: Install jq
+          command: sudo apt-get install -y jq
+      - run:
+          name: Configure ENV
+          working_directory: laravel
+          command: |
+            echo $ENV_FILE | base64 --decode > .env
+      - run:
+          name: Login ECR
+          command: eval $(aws ecr get-login --no-include-email --region $AWS_REGION)
+      - run:
+          name: Push App Image
+          command: |
+            docker build -t $AWS_ECR_APP_URL:latest -f docker/php/Dockerfile --build-arg TZ=$TZ --no-cache=true .
+            docker push $AWS_ECR_APP_URL:latest
+      - run:
+          name: Push Web Image
+          command: |
+            docker build -t $AWS_ECR_WEB_URL:latest -f docker/nginx/Dockerfile --build-arg TZ=$TZ --no-cache=true .
+            docker push $AWS_ECR_WEB_URL:latest
+      - run:
+          name: Configure For Cli
+          command: |
+            aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
+            aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
+            aws configure set default.region $AWS_REGION
+      - run:
+          name: Describe ECS Backend Task
+          command: |
+            aws ecs describe-task-definition \
+              --task-definition $ECS_BACK_TASK_NAME | jq '.taskDefinition | { containerDefinitions: .containerDefinitions }' > definition.json
+      - run:
+          name: Update ECS Backend Task
+          command: |
+            aws ecs register-task-definition \
+              --execution-role-arn $EXECUTION_ROLE_ARN \
+              --family $ECS_BACK_TASK_NAME \
+              --cli-input-json file://definition.json
+      - run:
+          name: Update ECS Backend Service
+          command: |
+            aws ecs update-service \
+              --cluster $ECS_CLUSTER_NAME \
+              --service $ECS_BACK_SERVICE_NAME \
+              --task-definition $ECS_BACK_TASK_NAME
+      - run:
+          name: Push FrontApp Image
+          command: |
+            docker build -t $AWS_ECR_FRONT_APP_URL:latest -f docker/node/Dockerfile --build-arg TZ=$TZ --no-cache=true .
+            docker push $AWS_ECR_FRONT_APP_URL:latest
+      - run:
+          name: Describe ECS Front Task
+          command: |
+            aws ecs describe-task-definition \
+              --task-definition $ECS_FRONT_TASK_NAME | jq '.taskDefinition | { containerDefinitions: .containerDefinitions }' > definition.json
+      - run:
+          name: Update ECS Front Task
+          command: |
+            aws ecs register-task-definition \
+              --family $ECS_FRONT_TASK_NAME \
+              --execution-role-arn $EXECUTION_ROLE_ARN \
+              --cli-input-json file://definition.json
+      - run:
+          name: Update ECS Front Service
+          command: |
+            aws ecs update-service \
+              --cluster $ECS_CLUSTER_NAME \
+              --service $ECS_FRONT_SERVICE_NAME \
+              --task-definition $ECS_FRONT_TASK_NAME
+
+workflows:
+  version: 2
+  build_test_deploy:
+    jobs:
+      - build
+      - test:
+          requires:
+            - build
+      - deploy:
+          requires:
+            - test
+          filters:
+            branches:
+              only: master
+      - notify

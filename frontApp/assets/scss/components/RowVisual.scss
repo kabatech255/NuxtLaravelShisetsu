@@ -1,0 +1,105 @@
+.RowVisual {
+  height: 160px;
+  &.--hasContent {
+    padding-top: $headerMdHeight;
+  }
+  z-index: 1;
+
+  .RowVisual_inner {
+    z-index: 1;
+    height: 100%;
+    position: relative;
+  }
+  .RowVisual_innerTop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    transform: translate3d(0, -100%, 0);
+    overflow: hidden;
+    height: $headerMdHeight;
+    padding: 0 10px;
+  }
+  .RowVisual_innerRow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+  .RowVisual_sub {
+    color: $white;
+    font-weight: bold;
+    font-size: $fontSizeSm;
+    flex-shrink: 0;
+    margin-right: 5px;
+  }
+  .RowVisual_innerTitle {
+    color: $white;
+    font-weight: bold;
+    font-size: $titleSize2;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+  .RowVisual_title {
+    padding: 0 20px;
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 20%;
+    transform: translate3d(0, -50%, 0);
+    color: $white;
+    font-size: $titleSizeBasis;
+
+    &::before {
+      content: attr(data-subtitle);
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 0;
+      color: $white;
+      font-size: $fontSizeLg;
+      transform: translate3d(-100%, -50%, 0);
+    }
+  }
+
+  background-position: center;
+  background-size: cover;
+  position: relative;
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to right, #000000 30%, #888888);
+    background: -moz-linear-gradient(left, #000000 30%, #888888);
+    background: -webkit-linear-gradient(left, #000000 30%, #888888);
+    opacity: 0.3;
+    z-index: -1;
+  }
+
+  @include media() {
+    //height: 120px;
+  }
+
+  @include media('sm') {
+    height: 100px;
+    .RowVisual_title {
+      font-size: $titleSize3;
+    }
+    .RowVisual_innerTop {
+      height: initial;
+      transform: translate3d(0, calc(-100% - 5px), 0);
+    }
+    .RowVisual_innerTitle {
+      font-size: $titleSize3;
+    }
+  }
+
+  @include mediaHeight() {
+    height: $headerMdHeight;
+  }
+}

@@ -1,0 +1,12 @@
+.PageContent {
+  min-height: calc(100vh - #{$footerHeight});
+  padding-top: $headerHeight;
+  overflow-x: hidden;
+  @include media() {
+    padding-top: $headerMdHeight;
+  }
+  &.--mypage {
+    padding-top: 0;
+    background: $bgGrey;
+  }
+}

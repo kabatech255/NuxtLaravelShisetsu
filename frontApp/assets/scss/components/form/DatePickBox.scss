@@ -1,0 +1,64 @@
+.DatePickBox {
+  display: block;
+  transition: .3s;
+  position: relative;
+  .DatePickBox_col:not(:first-of-type) {
+    margin-top: 15px;
+  }
+  .DatePickBox_item {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    .DatePickBox_label {
+      margin-right: 10px;
+      flex-shrink: 0;
+      cursor: pointer;
+    }
+    .DatePickBox_button {
+      background: $primaryColor;
+      color: $white;
+      border-radius: $radiusBasis 0 0 #{$radiusBasis} / #{$radiusBasis} 0 0 $radiusBasis;
+    }
+    .DatePickBox_body {
+      display: block;
+      padding: 5px 12px;
+      border-width: 1px 1px 1px 0;
+      border-style: solid;
+      border-color: $grey;
+      border-radius: 0 $radiusBasis #{$radiusBasis} 0 / 0 $radiusBasis #{$radiusBasis} 0;
+      color: $grey3;
+      &:disabled {
+        border-color: transparent;
+        &+ label {
+          color: $fontColorBasis;
+          font-size: $fontSizeBasis;
+        }
+      }
+    }
+  }
+
+  .DatePickBox_appendIcon {
+    position: absolute;
+    top: 50%;
+    right: 5px;
+    transform: translate3d(0, -50%, 0);
+    display: inline-block;
+    font-size: $iconSize2;
+    cursor: pointer;
+    color: lighten($fontColorBasis, 25%);
+  }
+
+  &.--error {
+    .DatePickBox_body {
+      border-color: $errorColor;
+    }
+
+    .DatePickBox_label {
+      color: $errorColor;
+    }
+  }
+
+  &.--none {
+    display: none;
+  }
+}

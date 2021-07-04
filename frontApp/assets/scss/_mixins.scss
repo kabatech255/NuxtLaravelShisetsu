@@ -1,0 +1,190 @@
+@mixin media($breakpoint: md) {
+  @media #{map-get($breakpoints, $breakpoint)} {
+    @for $i from 1 through $split-grid {
+      &.u-#{$breakpoint}-col-#{$i} {
+        width: 100% / $split-grid * $i;
+      }
+    }
+
+    @content;
+  }
+}
+@mixin mediaHeight($breakpoint: sm) {
+  @media #{map-get($breakpointsH, $breakpoint)} {
+    @content;
+  }
+}
+
+@mixin baseBoxShadow($y: 4px, $z: 10px, $inset: -6px, $color: $darkBlue2) {
+  box-shadow: 0 $y $z $inset $color;
+}
+
+@mixin baseClickStyle($y: 4px, $z: 10px, $inset: -6px, $color: $darkBlue2) {
+  @include baseBoxShadow($y, $z, $inset, $color);
+  transition: $transitionBasis;
+  &:hover {
+    transform: translate3d(0, 2px, 0);
+    box-shadow: none;
+  }
+  &:focus {
+    opacity: $opacityBasis;
+  }
+  &:active {
+    transform: translate3d(0, 2px, 0);
+    box-shadow: none;
+  }
+}
+
+@mixin resetClickStyle() {
+  box-shadow: none;
+  &:hover, &:focus, &:active {
+    transform: none;
+    opacity: $opacityBasis;
+  }
+}
+
+@mixin baseHeaderStyle() {
+  background: $white;
+  box-shadow: 0 1px 10px -4px $grey3;
+}
+
+@mixin rippleEffect() {
+  display: block;
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  background-color: rgba(lighten($white, 20%), 0.8);
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(10);
+  transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
+  &-enter {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(0);
+  }
+}
+
+@mixin resetRippleEffect() {
+  display: none;
+  &-enter {
+    opacity: 0;
+    transform: none;
+  }
+}
+@mixin baseScrollbarStyle() {
+  &::-webkit-scrollbar {
+    width: 5px;
+    background: transparent;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+    border-left: 0;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: lighten($black, 20%);
+    border-radius: 9999px;
+    box-shadow: inset 0 0 0 2px transparent;
+  }
+}
+
+@mixin verticalScrollbarStyle() {
+  &::-webkit-scrollbar {
+    height: 3px;
+    background: transparent;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+    border-left: 0;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: lighten($black, 25%);
+    border-radius: 9999px;
+    box-shadow: inset 0 0 0 2px transparent;
+  }
+}
+
+@mixin fillStyle() {
+  height: 100vh;
+  @include media() {
+    min-height: 100vh;
+    padding-bottom: $mdSidebarHeight;
+  }
+  @include media('sm-w') {
+    height: initial;
+  }
+}
+
+@mixin contentCenter() {
+  display: grid;
+  place-content: center;
+  gap: 1ch;
+}
+
+@mixin tooltipStyle($value: '') {
+  position: relative;
+  &::after {
+    content: $value;
+    display: block;
+    position: absolute;
+    bottom: 0;
+    right: -10px;
+    transform: translate3d(0, calc(100% + 12px), 0);
+    color: $white;
+    font-size: $fontSizeSm;
+    font-weight: bold;
+    padding: 8px;
+    background: $black2;
+    white-space: nowrap;
+    opacity: 0;
+    transition: $transitionBasis;
+    pointer-events: none;
+  }
+  &::before {
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: 0;
+    right: 50%;
+    transform: translate3d(50%, 100%, 0);
+    width: 0;
+    height: 0;
+    border-width: 0 4px 12px 4px;
+    border-color: transparent transparent $black2 transparent;
+    border-style: solid;
+    opacity: 0;
+    transition: $transitionBasis;
+    pointer-events: none;
+  }
+  &:hover::after,
+  &:hover::before {
+    opacity: 1;
+    pointer-events: initial;
+  }
+}
+
+@mixin fadein() {
+  .fade-enter-active,
+  .fade-leave-active {
+    transition: opacity 500ms ease-out;
+    transition-delay: 500ms;
+  }
+
+  .fade-enter {
+    opacity: 0;
+  }
+
+  .fade-enter-to {
+    opacity: 1;
+  }
+
+  .fade-leave {
+    opacity: 1;
+  }
+
+  .fade-leave-to {
+    opacity: 0;
+  }
+}

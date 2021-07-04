@@ -1,0 +1,68 @@
+.TextareaBox {
+  display: block;
+  transition: .3s;
+  position: relative;
+  .TextareaBox_label {
+    transition: .3s;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translate3d(0, -50%, 0);
+    pointer-events: none;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    &.--escape {
+      top: 0;
+      left: 0;
+      transform: translate3d(0, -100%, 0);
+      color: $primaryColor;
+      font-size: 80%;
+      .TextareaBox_prependIcon {
+        font-size: $fontSizeLg;
+      }
+    }
+  }
+  .TextareaBox_prependIcon {
+    vertical-align: middle;
+    font-size: $iconSize2;
+    margin-right: 5px;
+  }
+  .TextareaBox_body {
+    display: block;
+    width: 100%;
+    padding: 8px 12px 8px 0;
+    border-bottom: 1px solid lighten($black, 50%);
+    &:focus {
+      border-color: $primaryColor;
+    }
+    &.--escape::placeholder {
+      color: $grey2;
+    }
+    &::placeholder {
+      transition: $transitionBasis;
+      color: transparent;
+    }
+  }
+
+  .TextareaBox_appendIcon {
+    position: absolute;
+    top: 50%;
+    right: 5px;
+    transform: translate3d(0, -50%, 0);
+    display: inline-block;
+    font-size: $iconSize2;
+    cursor: pointer;
+    color: lighten($black, 25%);
+  }
+
+  &.--error {
+    .TextareaBox_body {
+      border-color: $errorColor;
+    }
+
+    .TextareaBox_label {
+      color: $errorColor;
+    }
+  }
+}

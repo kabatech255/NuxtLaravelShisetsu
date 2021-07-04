@@ -1,0 +1,13 @@
+.AuthorIcon {
+  display: inline-block;
+  padding: 7px 10px;
+  border-radius: 9999px;
+  background-position: center;
+  background-size: cover;
+  background-color: $colorBousai;
+  line-height: 1.5;
+  .AuthorIcon_text {
+    line-height: 1;
+    color: $white;
+  }
+}

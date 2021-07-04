@@ -1,0 +1,37 @@
+body {
+  .v-application {
+    h1, h2, h3, h4, h5, h6, p, ul, ol {
+      margin: 0;
+      padding: 0;
+      font-weight: normal;
+    }
+    ul {
+      padding: 0;
+    }
+    button,
+    [role=button],
+    [type=button],
+    [type=submit],
+    [type=reset] {
+      color: $white;
+    }
+    &.theme--light {
+      background: transparent;
+      color: $fontColorBasis !important;
+    }
+    font-family: $fontFamilyBasis !important;
+    .v-btn {
+      &.v-size--default {
+        font-size: $fontSizeSm;
+      }
+    }
+    .v-label {
+      font-size: 1.4rem;
+    }
+    .v-icon {
+      &.v-icon {
+        transition-duration: $transitionBasis;
+      }
+    }
+  }
+}

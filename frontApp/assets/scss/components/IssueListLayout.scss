@@ -1,0 +1,217 @@
+.IssueListLayout {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 6px 0 12px -4px $darkBlue2;
+  overflow-y: scroll;
+  position: relative;
+  @include baseScrollbarStyle();
+  &::before {
+    content: '';
+    display: block;
+    width: 100%;
+    padding-top: 100%;
+    pointer-events: none;
+    background: transparent;
+  }
+  .IssueListLayout_head {
+    flex-shrink: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+  .IssueListLayout_dashboard {
+    width: 100%;
+    height: 0;
+    padding-bottom: 100%;
+    color: $white;
+    position: relative;
+  }
+  .IssueListLayout_core {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .IssueListLayout_graphNav {
+    height: 100%;
+    width: 100%;
+  }
+  .IssueListLayout_graphItem {
+    padding: 15px 15px 25px;
+    height: 100%;
+  }
+  .IssueListLayout_graphWrap {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  .IssueListLayout_graphTitle {
+    flex-shrink: 0;
+    width: 100%;
+    font-size: $fontSizeLg;
+    font-weight: bold;
+    text-align: center;
+    padding: 5px;
+  }
+  .IssueListLayout_graphBody {
+    flex-grow: 1;
+    height: 100%;
+    width: 100%;
+  }
+  .IssueListLayout_card {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    .IssueListLayout_cardHead {
+      flex-shrink: 0;
+    }
+    .IssueListLayout_cardBody {
+      flex-grow: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 100%
+    }
+  }
+  .IssueListLayout_body {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    background: $white;
+    z-index: 1;
+  }
+  .IssueListLayout_select {
+    flex-shrink: 0;
+    padding: 0 12px;
+  }
+  .IssueListLayout_operator {
+    flex-shrink: 0;
+    padding: 30px 12px 12px;
+  }
+  .IssueListLayout_label {
+    font-size: $fontSizeXl;
+    font-weight: bold;
+    padding: 36px 12px 0;
+    @include media() {
+      font-size: $fontSizeLg;
+    }
+  }
+  .IssueListLayout_bodyRow {
+    &.--fixed {
+      flex-shrink: 0;
+    }
+  }
+  .IssueListLayout_nav {
+    padding: 0 12px;
+  }
+  .IssueListLayout_menu {
+  }
+  .IssueListLayout_item {
+    display: flex;
+    align-items: center;
+    .IssueListLayout_col {
+      flex-shrink: 0;
+      &.--flex {
+        flex: 1 1 auto;
+        padding: 12px 0;
+        cursor: pointer;
+      }
+      &.--help {
+        padding: 0 10px;
+      }
+    }
+    .IssueListLayout_help {
+      font-size: $iconSizeSm;
+      color: $grey2;
+      cursor: pointer;
+      transition: $transitionBasis;
+      @include tooltipStyle(attr(data-desc)'');
+      &::after {
+        white-space: pre-wrap;
+        width: 60vw;
+        max-width: 300px;
+        z-index: 2;
+        line-height: 2;
+      }
+      &::before {
+        z-index: 2;
+      }
+      &:hover::before,
+      &:hover::after {
+        pointer-events: none;
+      }
+    }
+    &:not(:first-of-type) {
+      border-top: 1px solid $grey2;
+    }
+  }
+  .IssueListLayout_narrowDown {
+    cursor: pointer;
+    display: inline-block;
+    text-align: center;
+    color: $grey2;
+    &.--narrow {
+      color: $primaryColor;
+    }
+  }
+  .IssueListLayout_mark {
+    color: darken($primaryColor, 10%);
+    cursor: pointer;
+    &.--improved {
+      color: $orange;
+    }
+    &.--hasLogDetail {
+      color: $errorColor;
+    }
+
+    @include tooltipStyle(attr(data-tooltip)'');
+    &::after {
+      z-index: 2;
+      line-height: 2;
+    }
+    &::before {
+      z-index: 2;
+    }
+    &:hover::before,
+    &:hover::after {
+      pointer-events: none;
+    }
+  }
+
+  @include media('lg') {
+    position: initial;
+    &::before {
+      padding-top: 70%;
+    }
+    .IssueListLayout_dashboard {
+      padding-bottom: 70%;
+    }
+    .IssueListLayout_body {
+
+    }
+  }
+  @include media('sm') {
+    &::before {
+      padding-top: 100%;
+    }
+    .IssueListLayout_dashboard {
+      padding-bottom: 100%;
+    }
+  }
+
+  @include mediaHeight() {
+    overflow-y: scroll;
+    .IssueListLayout_body {
+      overflow-y: initial;
+    }
+    .IssueListLayout_menu {
+      max-height: 250px;
+    }
+  }
+}

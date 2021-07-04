@@ -1,0 +1,90 @@
+.SelectBox {
+  min-width: 140px;
+  //background-color: lighten(#ea6254, 15%);
+  .SelectBox_body {
+    position: relative;
+  }
+  .SelectBox_label {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translate3d(0, -50%, 0);
+    transition: $transitionBasis;
+    &.--escape {
+      top: 0;
+      left: 0;
+      transform: translate3d(0, -100%, 0);
+      color: $primaryColor;
+      font-size: 80%;
+      .SelectBox_prependIcon {
+        font-size: $fontSizeLg;
+      }
+    }
+  }
+  .SelectBox_appendIcon {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translate3d(0, -50%, 0);
+    pointer-events: none;
+    &.--escape {
+      color: $primaryColor;
+    }
+  }
+  .SelectBox_list {
+    width: 100%;
+    padding: 10px 12px 10px 0;
+    border-bottom: 1px solid lighten($black, 50%);
+    &:focus {
+      border-color: $primaryColor;
+    }
+    &:disabled {
+      color: $fontColorBasis;
+      background: transparent;
+      border-color: transparent;
+      &+ .SelectBox_label.--escape {
+        color: $fontColorBasis;
+        font-size: $fontSizeBasis;
+        &+ .SelectBox_appendIcon {
+          display: none;
+        }
+      }
+    }
+  }
+
+  &.--white {
+    .SelectBox_label,
+    .SelectBox_list {
+      color: $white;
+      border-color: $white;
+      &:focus {
+        border-color: $white;
+      }
+    }
+    .SelectBox_appendIcon.--escape {
+      color: $white;
+    }
+  }
+  &.--head {
+    .SelectBox_label,
+    .SelectBox_list {
+      color: $black2;
+      border-color: $black2;
+    }
+  }
+  &.--large {
+    .SelectBox_list {
+      font-size: $fontSizeLg;
+      font-weight: bold;
+    }
+  }
+  &.--hasIndex {
+    .SelectBox_list {
+      padding: 10px 12px;
+    }
+  }
+
+  .SelectBox_item:checked {
+    background: red;
+  }
+}

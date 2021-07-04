@@ -1,0 +1,63 @@
+.DashboardGrid {
+  min-height: 100%;
+  padding: 8px;
+  background: $bgGrey;
+  display: grid;
+  grid-template-rows: 680px 1fr 320px;
+  grid-template-columns: 22.5% 1fr 1fr 22.5%;
+  grid-template-areas:
+    "bookmark calendar calendar others"
+    "bookmark calendar calendar others"
+    "score score todo others";
+  .DashboardGrid_box {
+    &.--mail {
+      grid-area: mail;
+    }
+    &.--calendar {
+      grid-area: calendar;
+    }
+    &.--bookmark {
+      grid-area: bookmark;
+    }
+    &.--score {
+      grid-area: score;
+    }
+    &.--todo {
+      grid-area: todo;
+    }
+    &.--others {
+      grid-area: others;
+    }
+  }
+  @include media('xl') {
+    grid-template-rows: 680px 1fr 350px;
+    grid-template-columns: calc(100% / 3) 1fr 1fr;
+    grid-template-areas:
+    "bookmark calendar calendar"
+    "bookmark calendar calendar"
+    "score score todo";
+    .DashboardGrid_box.--others {
+      display: none;
+    }
+  }
+  @include media('lg') {
+    height: initial;
+    min-height: 100%;
+    grid-template-rows: calc(100vh - 265px) 350px 350px;
+    grid-template-areas:
+    "calendar calendar calendar"
+    "bookmark bookmark bookmark"
+    "score score todo";
+    padding-bottom: 20px;
+  }
+  @include media('sm-w') {
+    margin: 0;
+    grid-template-rows: calc(100vh - 205px);
+    grid-template-columns: 100%;
+    grid-template-areas:
+    "calendar"
+    "bookmark"
+    "score"
+    "todo";
+  }
+}

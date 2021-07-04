@@ -1,0 +1,57 @@
+.ExamLayout {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  .ExamLayout_col {
+    &.--side {
+      flex-shrink: 0;
+      width: 350px;
+      background: $white;
+    }
+    &.--main {
+      flex-grow: 1;
+      overflow: hidden;
+    }
+  }
+  .ExamLayout_sideMask {
+    display: none;
+  }
+  @include media('lg') {
+    flex-direction: column;
+    .ExamLayout_col {
+      &.--side {
+        width: 80%;
+        max-width: 500px;
+        height: 100%;
+        overflow-y: hidden;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: $sidebarZIndex;
+        border-radius: 0 $radiusBasis $radiusBasis 0 / 0 $radiusBasis $radiusBasis 0;
+        transition: $transitionBasis;
+        @include baseBoxShadow();
+        .ExamLayout_sideMask {
+          display: block;
+          position: fixed;
+          top: 0;
+          right: 0;
+          width: 100vw;
+          height: 100vh;
+          background: $black;
+          opacity: 0.3;
+          z-index: -1;
+        }
+        &.--hidden {
+          transform: translate3d(-100%, 0, 0);
+        }
+      }
+    }
+  }
+  @include media('sm') {
+    height: initial;
+    .ExamLayout_col.--main {
+      overflow: initial;
+    }
+  }
+}

@@ -1,0 +1,31 @@
+.CircleBox {
+  width: 160px;
+  height: 160px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  border: 2px solid #fefefe;
+
+  .CircleBox_value {
+    font-size: 5rem;
+    position: relative;
+    line-height: 1;
+    &::after {
+      content: attr(data-label) '';
+      display: block;
+      font-size: 1rem;
+      position: absolute;
+      top: -5px;
+      left: -20px;
+      right: -20px;
+      transform: translate3d(0, -100%, 0);
+      line-height: 1.25;
+      letter-spacing: 0.1em;
+      text-align: center;
+      font-weight: 700;
+      white-space: pre-line;
+    }
+  }
+}

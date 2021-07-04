@@ -1,0 +1,10 @@
+.Container {
+  width: 100%;
+  max-width: $baseWidth;
+  margin: 0 auto;
+  height: 100%;
+  padding: 0 30px;
+  @include media() {
+    padding: 0;
+  }
+}

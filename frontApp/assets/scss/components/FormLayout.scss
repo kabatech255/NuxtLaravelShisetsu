@@ -1,0 +1,79 @@
+.FormLayout {
+  width: 90%;
+  max-width: 500px;
+  margin: 0 auto;
+  background: $white;
+  border-radius: $radiusBasis;
+  @include baseBoxShadow();
+
+  .FormLayout_container {
+    max-height: 98vh;
+    padding: 30px 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  .FormLayout_title {
+    flex-shrink: 0;
+    display: block;
+    font-weight: normal;
+    font-size: $titleSize2;
+    text-align: center;
+    width: 80%;
+    margin: 0 auto;
+  }
+  .FormLayout_body {
+    flex-grow: 1;
+    height: 100%;
+    width: 100%;
+    min-height: 180px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    padding-bottom: 15px;
+    @include baseScrollbarStyle();
+  }
+
+  .FormLayout_row {
+    display: block;
+    width: 80%;
+    margin: 50px auto 0;
+    position: relative;
+    &:first-of-type {
+      margin: 0 auto 0;
+    }
+
+    &.--vertical {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    &.--none {
+      display: none;
+    }
+
+  }
+  .FormLayout_errorMessage {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    transform: translate3d(0, 100%, 0);
+    font-size: $fontSizeSm;
+    color: $errorColor;
+  }
+
+  @include media('sm-w') {
+    &.--fill {
+      .FormLayout_container {
+        max-height: initial;
+      }
+    }
+    .FormLayout_row {
+      width: 90%;
+      margin: 35px auto 0;
+    }
+    .FormLayout_title {
+      font-size: 2rem;
+    }
+  }
+}

@@ -1,0 +1,65 @@
+.HeaderLink {
+  transition: $transitionBasis;
+  cursor: pointer;
+  width: 100%;
+  padding: 15px 10px;
+  border-style: solid;
+  border-width: 2px 0 2px 0;
+  @include media() {
+    border-width: 0 2px 0 2px;
+  }
+  border-color: transparent;
+  color: $fontColorBasis;
+  text-align: center;
+  &:hover {
+    background: $primaryColor;
+    border-color: $primaryColor;
+    color: $white;
+  }
+  &.--current {
+    border-color: transparent transparent $primaryColor transparent;
+    color: $primaryColor;
+    pointer-events: none;
+
+    @include media() {
+      border-color: transparent $primaryColor transparent $primaryColor;
+    }
+  }
+  .HeaderLink_menuMark {
+    text-align: center;
+  }
+  .HeaderLink_menuLabel {
+    display: block;
+    margin-top: 5px;
+  }
+
+  @include media() {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px 10px 20px;
+    .HeaderLink_itemMark {
+      display: inline-block;
+      font-size: $iconSize2;
+    }
+    .HeaderLink_menuLabel {
+      margin: 0 0 0 10px;
+    }
+  }
+
+  &.--mypage {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px 10px 20px;
+    border-width: 0 2px 0 2px;
+    &.--current {
+      border-color: transparent $primaryColor transparent $primaryColor;
+    }
+    .HeaderLink_itemMark {
+      display: inline-block;
+      font-size: $iconSize2;
+    }
+    .HeaderLink_menuLabel {
+      margin: 0 0 0 10px;
+    }
+  }
+}

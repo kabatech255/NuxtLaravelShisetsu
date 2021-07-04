@@ -1,0 +1,12 @@
+.Icon {
+  padding: 2px;
+  font-size: $iconSizeBasis;
+  &.--nospace {
+    padding: 0;
+  }
+  &:focus {
+    outline-color: $grey2;
+    outline-style: solid;
+    outline-width: 1px;
+  }
+}

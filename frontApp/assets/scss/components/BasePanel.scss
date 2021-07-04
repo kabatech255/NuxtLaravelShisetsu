@@ -1,0 +1,98 @@
+.BasePanel {
+  width: 100%;
+  height: 100%;
+  background: $white;
+  border-radius: $radiusBasis;
+  display: flex;
+  flex-direction: column;
+  @include baseBoxShadow();
+  .BasePanel_head {
+    padding: 10px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    font-size: $titleSize3;
+    position: relative;
+  }
+  .BasePanel_headAttach {
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 5px;
+    transform: translate3d(0, 100%, 0);
+    z-index: 1;
+    font-size: $fontSizeBasis;
+    .BasePanel_attachBg {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background: $white;
+      opacity: 0.8;
+      @include baseBoxShadow(4px, 8px, -4px, $grey2);
+    }
+    &.--hidden {
+      display: none;
+    }
+  }
+  .BasePanel_headRow {
+    padding: 5px;
+    text-align: right;
+  }
+  .BasePanel_prependIcon {
+    font-size: inherit;
+    width: 32px;
+    flex-shrink: 0;
+    color: $grey2;
+    cursor: pointer;
+  }
+  .BasePanel_titleValue {
+    flex-grow: 1;
+    text-align: center;
+    font-family: 'Itim', $fontFamilyBasis;
+  }
+  .BasePanel_appendIcon {
+    font-size: inherit;
+    flex-shrink: 0;
+    width: 32px;
+    text-align: center;
+    &.--isClick {
+      cursor: pointer;
+      z-index: 1;
+      @include tooltipStyle(attr(data-tooltip)'');
+    }
+  }
+
+  .BasePanel_body {
+    flex-grow: 1;
+    height: 80px;
+    padding: 0 10px 15px;
+    overflow-y: scroll;
+    @include baseScrollbarStyle();
+    @include verticalScrollbarStyle();
+  }
+  .BasePanel_row {
+    width: 100%;
+    height: 100%;
+    padding: 10px 5px;
+  }
+
+  @include media() {
+    .BasePanel_head {
+      padding: 5px;
+      font-size: $fontSizeXl;
+    }
+  }
+  @include media('sm-w') {
+    .BasePanel_headRow {
+      text-align: left;
+    }
+    .BasePanel_body {
+      height: initial;
+    }
+  }
+}

@@ -1,0 +1,203 @@
+.MainVisual {
+  position: relative;
+  .MainVisual_panel {
+    width: 100%;
+
+    &::after {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to right, transparent 20%, #000000);
+      background: -moz-linear-gradient(left, transparent 20%, #000000);
+      background: -webkit-linear-gradient(left, transparent 20%, #000000);
+      opacity: 0.2;
+      pointer-events: none;
+    }
+  }
+
+  .MainVisual_item {
+    height: $mainVisualHeight;
+    position: relative;
+    width: 100%;
+  }
+
+  .MainVisual_row {
+    display: flex;
+    width: 100%;
+    height: 100%;
+  }
+
+  .MainVisual_col {
+    color: $white;
+    padding: calc(#{$headerHeight} + 20px) 20px 20px 40px;
+    flex-grow: 1;
+    width: 50%;
+    height: 100%;
+    background: $grey;
+
+    &.--desc {
+      max-width: 600px;
+      background: $primaryColor;
+    }
+
+    &.--img {
+      background-size: cover;
+      background-position: center;
+    }
+  }
+  .MainVisual_title {
+    width: 100%;
+    font-size: $titleSizeBasis;
+    padding-bottom: 20px;
+    display: flex;
+    align-items: center;
+  }
+
+  .MainVisual_desc {
+    white-space: pre-wrap;
+  }
+
+  .MainVisual_point {
+    padding-top: 40px;
+  }
+
+  .MainVisual_pointTitle {
+    font-size: $titleSize3;
+    padding-bottom: 20px;
+    display: flex;
+    align-items: center;
+  }
+
+  .MainVisual_pointItem {
+    padding: 10px 0 0;
+
+    &:first-of-type {
+      padding: 0;
+    }
+  }
+
+  .MainVisual_pointValue {
+    display: inline-block;
+    padding-left: 25px;
+    background-image: url('#{$assetPath}/img/sheet_white.svg');
+    background-repeat: no-repeat;
+    background-size: 16px;
+    background-position: 3px 50%;
+  }
+
+  .MainVisual_guest {
+    padding-top: 20px;
+    text-align: center;
+  }
+  .MainVisual_scroll {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    display: none;
+    cursor: pointer;
+    padding: 5px 12px;
+    color: $white;
+    border: 1px solid $white;
+    transition: $transitionBasis;
+    animation: hop 0.3s linear alternate infinite;
+    overflow: hidden;
+    outline: none;
+    z-index: 1;
+    .MainVisual_scrollRipple {
+      @include rippleEffect();
+    }
+    .MainVisual_scrollIcon {
+      font-size: $iconSizeSm;
+    }
+  }
+
+  .MainVisual_reset {
+    margin-top: calc(#{$mainVisualHeight} - #{$headerHeight});
+  }
+
+  @include media() {
+    .MainVisual_col {
+      padding: calc(#{$headerMdHeight} + 20px) 20px 20px;
+    }
+    .MainVisual_reset {
+      margin-top: calc(#{$mainVisualHeight} - #{$headerMdHeight});
+    }
+  }
+
+  @include media('sm-w') {
+    .MainVisual_col {
+      width: 100%;
+    }
+    .MainVisual_panel::after {
+      background: linear-gradient(to bottom, #000000 -50%, transparent);
+      background: -moz-linear-gradient(top, #000000 -50%, transparent);
+      background: -webkit-linear-gradient(top, #000000 -50%, transparent);
+      opacity: 0.2;
+    }
+    .MainVisual_scroll {
+      display: inline-block;
+    }
+    .MainVisual_title {
+      font-size: $titleSize2;
+    }
+    .MainVisual_pointTitle {
+      font-size: $fontSizeLg;
+    }
+    .MainVisual_item {
+      height: 100vh;
+    }
+    .MainVisual_row {
+      flex-direction: column;
+    }
+    .MainVisual_col.--img {
+      order: 1;
+      height: 30%;
+      .MainVisual_illustList {
+        flex-direction: row;
+      }
+    }
+
+    .MainVisual_col.--desc {
+      order: 2;
+      height: 70%;
+      padding: 20px 15px;
+      position: relative;
+    }
+    .MainVisual_reset {
+      margin-top: calc(100vh - #{$headerMdHeight});
+    }
+    .MainVisual_guest {
+      padding-top: 0;
+      position: absolute;
+      bottom: 25px;
+      left: 0;
+      right: 0;
+    }
+  }
+
+  @include mediaHeight() {
+    .MainVisual_panel {
+      position: relative;
+      top: -#{$headerMdHeight};
+    }
+    .MainVisual_item {
+      min-height: 560px;
+    }
+    .MainVisual_reset {
+      margin-top: 0;
+    }
+  }
+
+  @keyframes hop {
+    0% {
+      transform: none;
+    }
+    100% {
+      transform: translateY(5px);
+    }
+  }
+}

@@ -1,0 +1,40 @@
+[
+  {
+    "name": "frontApp",
+    "portMappings": [
+      {
+        "hostPort": 0,
+        "protocol": "tcp",
+        "containerPort": 3000
+      }
+    ],
+    "entryPoint": [
+      "yarn",
+      "run",
+      "dev"
+    ],
+    "environment": [
+      {
+        "name": "API_URL",
+        "value": "https://exam.kensa-system.net/api"
+      },
+      {
+        "name": "API_BROWSER_URL",
+        "value": "https://exam.kensa-system.net/api"
+      }
+    ],
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "secretOptions": null,
+      "options": {
+        "awslogs-group": "${log_groups.2}",
+        "awslogs-region": "ap-northeast-1",
+        "awslogs-stream-prefix": "${log_groups.2}"
+      }
+    },
+    "image": "015211996394.dkr.ecr.ap-northeast-1.amazonaws.com/risk-exam/front_app:latest",
+    "cpu": 8,
+    "memoryReservation": 512,
+    "essential": true
+  }
+]

@@ -1,0 +1,119 @@
+.Card {
+  //display: block;
+  border-radius: $radiusBasis;
+  @include baseBoxShadow($y: 4px, $z: 10px, $inset: -6px, $color: $darkBlue2);
+  min-width: 200px;
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
+  background: $white;
+  color: $fontColorBasis;
+  position: relative;
+  .Card_disabled {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: $transitionBasis;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: $black;
+    z-index: 2;
+    border-radius: $radiusBasis;
+    .Card_restore {
+      padding: 10px 15px;
+      border: 2px solid $white;
+      font-weight: bold;
+      color: $white;
+      cursor: pointer;
+      transition: $transitionBasis;
+      &:hover {
+        background: $white;
+        color: $black2;
+      }
+    }
+  }
+  .Card_image {
+    overflow: hidden;
+    position: relative;
+    border-radius: $radiusBasis $radiusBasis 0 0 / #{$radiusBasis} $radiusBasis 0 0;
+    width: 100%;
+    height: 0;
+    padding-top: 70%;
+    .Card_noImage {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: $grey;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: $white;
+      .Card_noImageIcon {
+        font-size: $titleSizeBasis;
+      }
+    }
+    .Card_imageSrc {
+      position: absolute;
+      display: block;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      transition: ($transitionBasis * 3);
+    }
+
+    &:hover {
+      opacity: $opacityBasis;
+      .Card_imageSrc {
+        transform: scale3d(1.15, 1.15, 1);
+      }
+    }
+  }
+  .Card_bottom {
+    padding: 12px 10px;
+  }
+  .Card_title {
+    width: 100%;
+    max-width: 350px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+  .Card_body {
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    font-size: $fontSizeSm;
+
+    .Card_desc {
+      flex-grow: 1;
+    }
+
+    .Card_tag {
+      flex-shrink: 0;
+      background: $grey2;
+      color: $white;
+      padding: 2px 4px;
+      font-weight: 500;
+    }
+
+    .Card_icon {
+      z-index: 1;
+    }
+  }
+  &.--disabled {
+    .Card_disabled {
+      opacity: $opacityBasis;
+      pointer-events: initial;
+    }
+  }
+}

@@ -1,0 +1,26 @@
+.WaitingLoader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: $black2;
+  z-index: $dialogZIndex;
+  .WaitingLoader_msg {
+    color: $white;
+    font-size: $titleSize3;
+    font-family: 'Itim', $fontFamilyBasis;
+    animation: flash 0.5s linear alternate infinite;
+  }
+  @keyframes flash {
+    0% {
+      opacity: 0.2;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+}

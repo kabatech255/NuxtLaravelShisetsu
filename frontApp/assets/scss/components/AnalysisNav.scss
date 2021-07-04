@@ -1,0 +1,27 @@
+.AnalysisNav {
+  width: 100%;
+  background: $white;
+  .AnalysisNav_bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+  .AnalysisNav_menu {
+    z-index: 1;
+    padding: 160px 20px 0;
+    width: 100%;
+    max-width: $baseWidth;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .AnalysisNav_item {
+    padding: 5px 10px;
+    color: $black2;
+    &.--flex {
+      flex-grow: 1;
+    }
+  }
+}

@@ -1,0 +1,25 @@
+.CancelAlertBox {
+  padding: 40px 20px;
+  width: 90%;
+  max-width: 500px;
+  margin: 0 auto;
+  background: $white;
+  border-radius: $radiusBasis;
+  @include baseBoxShadow();
+  .CancelAlertBox_message {
+    padding: 30px 10px;
+    text-align: center;
+    font-size: 1.4rem;
+    &.--left {
+      text-align: left;
+    }
+  }
+  .CancelAlertBox_list {
+    max-width: 230px;
+    text-align: left;
+    margin: 20px auto;
+    padding: 15px 15px 15px 30px;
+    list-style: initial;
+    color: $errorColor;
+  }
+}

@@ -1,0 +1,16 @@
+.ProfileLayout {
+  .ProfileLayout_row {
+    flex-shrink: 0;
+    &.--fill {
+      flex-grow: 1;
+      flex-shrink: 1;
+      width: 100%;
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  @include media() {
+    padding-bottom: $mdSidebarHeight;
+  }
+}

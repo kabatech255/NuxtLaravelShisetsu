@@ -1,0 +1,53 @@
+.p-analysis {
+  //padding-top: $headerMdHeight;
+  .p-analysis-row {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .p-analysis-col {
+    flex-shrink: 0;
+    &.--fixed {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+    }
+    &.--fill {
+      z-index: 1;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      padding-top: 160px;
+    }
+  }
+  .p-analysis-nav {
+    width: 100%;
+    background: $white;
+    z-index: 2;
+  }
+  .p-analysis-menu {
+    width: 100%;
+    max-width: $baseWidth;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .p-analysis-menuItem {
+    padding: 5px 10px;
+    color: $black2;
+    &.--flex {
+      flex-grow: 1;
+    }
+  }
+
+  @include media('sm') {
+    .p-analysis-col.--fill {
+      padding-top: 100px;
+
+    }
+  }
+}

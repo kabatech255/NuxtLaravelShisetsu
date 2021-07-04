@@ -1,0 +1,31 @@
+.MoreInfoLayout {
+  position: relative;
+  .MoreInfoLayout_overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: transparent;
+  }
+  .MoreInfoLayout_icon {
+    cursor: pointer;
+    text-align: right;
+  }
+  .MoreInfoLayout_body {
+    position: absolute;
+    top: 28px;
+    right: 0;
+    padding: 12px 0 0;
+    transition: $transitionBasis;
+    transform-origin: calc(100% - 14px) top;
+  }
+  &.--hidden {
+    .MoreInfoLayout_body {
+      transform: scale3d(0, 0, 1);
+    }
+    .MoreInfoLayout_overlay {
+      display: none;
+    }
+  }
+}

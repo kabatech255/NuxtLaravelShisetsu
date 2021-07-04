@@ -1,0 +1,112 @@
+@import url('https://fonts.googleapis.com/css2?family=Itim&display=swap');
+
+@font-face {
+  font-family: 'Roboto Thin';
+  src: url('#{$assetPath}/fonts/Roboto/Roboto-Thin.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Roboto Light';
+  src: url('#{$assetPath}/fonts/Roboto/Roboto-Light.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Yasashisa Gothic';
+  src: url('#{$assetPath}/fonts/yasashisagothic/yasashisagothic.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Notosans Thin';
+  src: url('#{$assetPath}/fonts/NotoSansCJKjp-hinted/NotoSansCJKjp-Thin.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'Notosans Light';
+  src: url('#{$assetPath}/fonts/NotoSansCJKjp-hinted/NotoSansCJKjp-Light.otf') format('opentype');
+}
+
+@include media() {
+  $headerHeight: 61px;
+}
+
+:root {
+  font-size: 62.5%;
+}
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  // iOSでリンクやボタンをクリックしたときに背景が青くハイライトするのを消去
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  font-size: $fontSizeBasis;
+  font-family: $fontFamilyBasis;
+  line-height: 1.5;
+  color: $fontColorBasis;
+  max-width: 100%;
+  @include fadein();
+}
+
+h1, h2, h3, h4, h5, h6, p {
+  font-weight: normal;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: $transitionBasis;
+
+  &:hover {
+    color: inherit;
+    opacity: $opacityBasis;
+    text-decoration: none;
+  }
+}
+
+img, i {
+  max-width: 100%;
+  vertical-align: middle;
+}
+
+input,
+textarea,
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  outline: none;
+  background: transparent;
+}
+
+textarea {
+  resize: vertical;
+}
+
+button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding: 0;
+  border: none;
+  &:focus {
+    outline: none;
+  }
+  color: inherit;
+  background: transparent;
+
+}
+
+input[type=checkbox], input[type=radio] {
+  &:checked {
+    // iOSでchekedの状態だと背景が黒くなるので解消
+    background: transparent;
+  }
+}
+
+th, td {
+  vertical-align: middle;
+}

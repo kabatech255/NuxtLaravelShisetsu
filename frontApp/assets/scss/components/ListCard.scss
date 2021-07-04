@@ -1,0 +1,36 @@
+.ListCard {
+  display: block;
+  width: 240px;
+  height: 220px;
+  border-radius: $radiusBasis;
+  @include baseBoxShadow();
+  overflow: hidden;
+  .ListCard_head {
+    font-size: 1.4rem;
+    padding: 8px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    background: lighten($grey, 5%);
+    box-shadow: 0 1px 5px -2px $grey;
+  }
+  .ListCard_body {
+    height: calc(100% - 40px);
+    overflow-y: scroll;
+    background: $white;
+    @include baseScrollbarStyle();
+  }
+  .ListCard_title {
+    margin-left: 4px;
+  }
+  .ListCard_menu {
+    display: block;
+    padding: 5px 0;
+  }
+  .ListCard_menuItem {
+    overflow-y: scroll;
+    font-size: $fontSizeSm;
+    padding: 10px 12px 10px 20px;
+  }
+}

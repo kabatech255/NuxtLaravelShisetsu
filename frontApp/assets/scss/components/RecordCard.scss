@@ -1,0 +1,146 @@
+.RecordCard {
+  display: block;
+  border-radius: $radiusBasis;
+  @include baseBoxShadow($y: 4px, $z: 10px, $inset: -8px, $color: $darkBlue2);
+  min-width: 200px;
+  max-width: 100%;
+  background: $white;
+  color: $fontColorBasis;
+  .RecordCard_image {
+    cursor: pointer;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-top: 70%;
+    transition: $transitionBasis;
+    border-radius: $radiusBasis $radiusBasis 0 0;
+
+    .RecordCard_noImage {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: $grey;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: $white;
+      .RecordCard_noImageIcon {
+        font-size: $titleSizeBasis;
+      }
+    }
+    .RecordCard_imageSrc {
+      position: absolute;
+      display: block;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      transition: ($transitionBasis * 3);
+    }
+
+    &:hover {
+      opacity: $opacityBasis;
+      .RecordCard_imageSrc {
+        transform: scale3d(1.15, 1.15, 1);
+      }
+    }
+    &.--improved {
+      &::after {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: $black;
+        opacity: 0.6;
+      }
+    }
+    .RecordCard_bookMark {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      color: $primaryColor;
+    }
+    .RecordCard_bookMarkIcon {
+      @include tooltipStyle(attr(data-tooltip)'');
+    }
+  }
+  .RecordCard_bottom {
+    padding: 10px;
+    position: relative;
+  }
+  .RecordCard_row {
+    position: relative;
+    min-height: 18px;
+  }
+  .RecordCard_trash {
+    cursor: pointer;
+    flex-shrink: 0;
+    background: $white;
+    color: $errorColor;
+    padding: 3px 5px;
+    font-size: $iconSize2;
+  }
+  .RecordCard_tag {
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate3d(-5px, calc(-100% - 5px), 0);
+    color: $white;
+    padding: 3px 5px;
+    border: 2px solid $white;
+    font-weight: bold;
+    opacity: 1;
+    pointer-events: none;
+    font-size: 1.2rem;
+    &::after {
+      content: '';
+      display: block;
+      background: $white;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      opacity: 0.3;
+    }
+  }
+  .RecordCard_author {
+    color: $grey3;
+    font-size: $fontSizeMinimum;
+    font-weight: 700;
+    font-style: italic;
+  }
+  .RecordCard_title {
+    padding-right: 5px;
+    width: 100%;
+    overflow-x: hidden;
+    .RecordCard_value {
+      display: block;
+      width: 100%;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+  }
+
+  .RecordCard_row:not(:first-of-type) {
+    z-index: -1;
+  }
+  .RecordCard_tag::after {
+    z-index: -1;
+  }
+  .RecordCard_bookMark {
+    z-index: 1;
+  }
+  .RecordCard_bottom {
+    z-index: 2;
+  }
+}

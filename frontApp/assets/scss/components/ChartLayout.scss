@@ -1,0 +1,29 @@
+.ChartLayout {
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 30px 10px;
+  background: $bgGrey;
+  .ChartLayout_row {
+    width: 100%;
+    max-width: $baseWidth;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    &.--alignStart {
+      align-items: flex-start;
+    }
+  }
+  .ChartLayout_col {
+    padding: 30px 10px 10px;
+    &.--alignStretch {
+      align-self: stretch;
+    }
+  }
+
+  @include media('sm-w') {
+    .ChartLayout_row {
+      align-items: flex-start;
+    }
+  }
+}

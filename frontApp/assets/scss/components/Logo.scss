@@ -1,0 +1,51 @@
+.Logo {
+  display: inline-block;
+  cursor: pointer;
+  transition: $transitionBasis;
+  .Logo_body {
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .Logo_icon {
+    padding: 10px;
+    border-radius: 9999px;
+    background: $green2;
+    display: inline-block;
+  }
+  .Logo_title {
+    display: inline-block;
+    padding: 0 0 10px 5px;
+  }
+  .Logo_titleMain {
+    display: block;
+    position: relative;
+    font-size: $titleSize3;
+    font-family: 'Yasashisa Gothic', $fontFamilyBasis;
+    line-height: 1;
+    padding-bottom: 2px;
+    &::after {
+      content: attr(data-sub)'';
+      display: block;
+      position: absolute;
+      bottom: 0;
+      left: 2px;
+      font-size: $fontSizeMinimum;
+      letter-spacing: 0.1em;
+      line-height: 1.25;
+      transform: translate3d(0, 100%, 0);
+    }
+  }
+  @include media() {
+    font-size: $fontSizeSm;
+    font-weight: bold;
+    .Logo_title {
+      padding-left: 5px;
+    }
+  }
+
+  &:hover {
+    opacity: $opacityBasis;
+  }
+}

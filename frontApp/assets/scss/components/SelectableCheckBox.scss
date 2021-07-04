@@ -1,0 +1,77 @@
+.SelectableCheckBox {
+  padding: 0 12px;
+  display: flex;
+  align-items: center;
+  transition: $transitionBasis;
+  &:active {
+    background: lighten($primaryColor, 35%);
+  }
+  .SelectableCheckBox_wrap {
+    position: relative;
+  }
+  .SelectableCheckBox_body {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    padding: 2px;
+    border: 2px solid $grey2;
+    cursor: pointer;
+    &:checked {
+      border-color: $primaryColor;
+    }
+    &:disabled {
+      border-color: transparent;
+      &+ label {
+        color: $fontColorBasis;
+        font-size: $fontSizeBasis;
+      }
+    }
+  }
+  .SelectableCheckBox_done {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translate3d(-2px, -50%, 0);
+    display: none;
+    pointer-events: none;
+    color: $primaryColor;
+    &.--done {
+      display: inline-block;
+    }
+  }
+
+  .SelectableCheckBox_label {
+    line-height: 1;
+    flex-grow: 1;
+    margin-left: 10px;
+    cursor: pointer;
+    padding: 8px 0;
+  }
+  .SelectableCheckBox_prependIcon {
+    vertical-align: middle;
+    font-size: $iconSize2;
+    margin-right: 5px;
+  }
+
+  &.--error {
+    .SelectableCheckBox_body {
+      border-color: $errorColor;
+    }
+
+    .SelectableCheckBox_label {
+      color: $errorColor;
+    }
+  }
+  &.--short {
+    width: 180px;
+  }
+  &.--sm {
+    .SelectableCheckBox_body {
+      width: 16px;
+      height: 16px;
+    }
+    .SelectableCheckBox_label {
+      font-size: $fontSizeSm;
+    }
+  }
+}

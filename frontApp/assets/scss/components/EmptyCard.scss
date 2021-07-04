@@ -1,0 +1,7 @@
+.EmptyCard {
+  background: $white;
+  width: 100%;
+  padding: 20px;
+  border-radius: $radiusBasis;
+  @include baseBoxShadow();
+}

@@ -1,0 +1,10 @@
+.Text {
+  &.--emptyMsg {
+    color: $grey2;
+    font-style: italic;
+  }
+  &.--date {
+    font-size: $titleSizeBasis;
+    line-height: 1;
+  }
+}

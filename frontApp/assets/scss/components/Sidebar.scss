@@ -1,0 +1,99 @@
+.Sidebar {
+  width: 100%;
+  height: 100%;
+  .Sidebar_top {
+    width: 100%;
+    height: 80px;
+    background: $red;
+    color: $white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    transition: $transitionBasis;
+    &:hover {
+      opacity: initial;
+      background: lighten($red, 10%);
+    }
+    &.--mdonly {
+      display: none;
+    }
+  }
+  .Sidebar_topIcon {
+    color: inherit;
+  }
+  .Sidebar_topValue {
+    font-size: $fontSizeSm;
+  }
+
+  .Sidebar_menu {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .Sidebar_menuItem {
+    flex-shrink: 0;
+    width: 100%;
+  }
+  .Sidebar_menuLink {
+    height: 80px;
+    padding: 10px;
+    transition: $transitionBasis;
+    color: $grey3;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    &:hover,
+    &.--current {
+      opacity: 1;
+      background: lighten($black, 5%);
+      color: $grey;
+    }
+    &.--current {
+      pointer-events: none;
+    }
+  }
+  .Sidebar_menuIcon {
+    color: inherit;
+    font-size: $iconSize2;
+  }
+  .Sidebar_menuValue {
+    color: inherit;
+    font-size: $fontSizeSm;
+  }
+
+
+  @include media() {
+    .Sidebar_top {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: $headerMdHeight;
+      height: $headerMdHeight;
+      &.--mdnone {
+        display: none;
+      }
+      &.--mdonly {
+        display: flex;
+      }
+    }
+    .Sidebar_menu {
+      flex-direction: row;
+    }
+    .Sidebar_menuItem {
+      width: 100%;
+      flex-grow: 1;
+      flex-shrink: 1;
+    }
+
+    .Sidebar_menuLink {
+      height: initial;
+      padding: 5px;
+    }
+
+  }
+}

@@ -1,0 +1,11 @@
+.ContentTitle {
+  max-width: $baseWidth;
+  margin: 0 auto;
+  text-align: center;
+  .ContentTitle_value {
+    display: inline-block;
+    padding: 5px 0;
+    border-bottom: 1px solid $fontColorBasis;
+    font-size: $titleSize3;
+  }
+}

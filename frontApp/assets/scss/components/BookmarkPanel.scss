@@ -1,0 +1,29 @@
+.BookmarkPanel {
+  width: 100%;
+  height: 100%;
+  padding: 8px;
+  .BookmarkPanel_row {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 40px;
+  }
+  .BookmarkPanel_col:not(:last-of-type) {
+    margin-bottom: 15px;
+  }
+
+  @include media('lg') {
+    .BookmarkPanel_row {
+      flex-direction: row;
+      width: 100%;
+      padding-bottom: 10px;
+    }
+    .BookmarkPanel_col {
+      &:not(:last-of-type) {
+        margin-bottom: 0;
+        margin-right: 15px;
+      }
+      width: 220px;
+      flex-shrink: 0;
+    }
+  }
+}

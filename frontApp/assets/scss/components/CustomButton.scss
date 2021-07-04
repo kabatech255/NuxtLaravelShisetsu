@@ -1,0 +1,157 @@
+.Button {
+  position: relative;
+  display: inline-block;
+  font-size: $fontSizeSm;
+  border-radius: $radiusBasis;
+  border: 2px solid $buttonBaseColor;
+  padding: 8px 12px;
+  background: $buttonBaseColor;
+  text-align: center;
+  cursor: pointer;
+  z-index: 1;
+  overflow: hidden;
+  outline: none;
+  @include baseClickStyle();
+
+  .Button_ripple {
+    @include rippleEffect();
+  }
+  .Button_label {
+    color: $white;
+    pointer-events: none;
+  }
+  &.--rounded {
+    border-radius: 9999px;
+    padding: 8px 20px;
+  }
+  &.--outlined {
+    border: 2px solid $buttonBaseColor;
+    background: $white;
+    .Button_ripple {
+      background-color: rgba(lighten($primaryColor, 20%), 0.8);
+    }
+    .Button_label {
+      color: $buttonBaseColor;
+    }
+    &.--pink {
+      background: $white;
+      border-color: $pink;
+      .Button_label {
+        color: $pink;
+      }
+      .Button_ripple {
+        background-color: rgba(lighten($pink, 20%), 0.8);
+      }
+    }
+  }
+
+  &.--transparent {
+    background: transparent;
+    color: $white;
+    border-color: $white;
+    .Button_label {
+      font-weight: bold;
+    }
+  }
+
+  &.--pink {
+    background: $pink;
+    border-color: $pink;
+  }
+  &.--error {
+    background: $errorColor;
+    border-color: $errorColor;
+  }
+
+  &.--min100 {
+    min-width: 100px;
+  }
+
+  &.--cancel {
+    background: $grey2;
+    border-color: $grey2;
+  }
+
+  &.--disabled {
+    cursor: not-allowed;
+    background: $disabledColor;
+    border-color: $disabledColor;
+    pointer-events: none;
+    .Button_label {
+      color: $white;
+    }
+    &:hover {
+      transform: none;
+      box-shadow: 0 4px 10px -6px $darkBlue2;
+    }
+  }
+
+  &.--fixed {
+    position: fixed;
+    bottom: 10px;
+    left: 50%;
+    transform: translate3d(-50%, 0, 0);
+    &:hover, &:focus {
+      transform: translate3d(-50%, 2px, 0);
+      box-shadow: none;
+    }
+    &:active {
+      transform: translate3d(-50%, 2px, 0);
+      box-shadow: none;
+    }
+  }
+
+  &.--text {
+    background: transparent;
+    border-radius: 0;
+    border: none;
+    font-size: 1.4rem;
+    padding: 0;
+    @include resetClickStyle();
+    .Button_label {
+      color: $blue;
+      font-weight: bold;
+    }
+    &.--disabled {
+      pointer-events: none;
+      .Button_label {
+        color: $disabledColor;
+      }
+    }
+    .Button_ripple {
+      @include resetRippleEffect();
+    }
+  }
+
+  &.--circle {
+    width: 45px;
+    height: 45px;
+    border-radius: 9999px;
+    background: $white;
+    border: 2px solid $pink;
+    padding: 4px;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+    transition: $transitionBasis;
+    @include baseClickStyle();
+    .Button_ripple {
+      @include rippleEffect();
+      background-color: rgba(lighten($pink, 20%), 0.8);
+    }
+  }
+
+  &.--sm {
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 5px;
+    line-height: 1;
+  }
+
+  &.--lg {
+    font-size: $fontSizeLg;
+    font-weight: bold;
+    padding: 10px 30px;
+  }
+
+}

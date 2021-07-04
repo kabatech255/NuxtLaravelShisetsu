@@ -1,0 +1,8 @@
+.FadeInBox {
+  opacity: 0;
+  transition: opacity 500ms ease-out;
+  transition-delay: 500ms;
+  &.--show {
+    opacity: 1;
+  }
+}

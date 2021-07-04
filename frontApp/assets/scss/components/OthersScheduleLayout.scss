@@ -1,0 +1,29 @@
+.OthersScheduleLayout {
+  width: 100%;
+  height: 100%;
+  border: 1px solid $grey;
+  .OthersScheduleLayout_head {
+    text-align: center;
+    padding: 15px 5px;
+  }
+  .OthersScheduleLayout_date {
+    font-size: $fontSizeSm;
+    font-weight: bold;
+  }
+  .OthersScheduleLayout_row {
+    border-top: 1px solid $grey;
+    &:nth-of-type(even){
+      background: lighten($primaryColor, 50%);
+    }
+  }
+  .OthersScheduleLayout_author {
+    padding: 15px 10px 5px 30px;
+  }
+  .OthersScheduleLayout_private {
+    font-size: $iconSizeSm;
+    color: $grey3;
+  }
+  .OthersScheduleLayout_value {
+    padding: 5px 10px 15px 30px;
+  }
+}

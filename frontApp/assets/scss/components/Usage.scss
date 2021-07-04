@@ -1,0 +1,31 @@
+.Usage {
+  width: 100%;
+  display: block;
+
+  .Usage_row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 20px 0;
+  }
+
+  .Usage_col {
+    padding: 10px;
+    max-width: 450px;
+    margin: 0 auto;
+  }
+  .Usage_item {
+    position: relative;
+    padding-bottom: 75%;
+    overflow: hidden;
+    border: 3px solid $primaryColor;
+  }
+  .Usage_image {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    transform: translate3d(-50%, -50%, 0);
+  }
+
+}

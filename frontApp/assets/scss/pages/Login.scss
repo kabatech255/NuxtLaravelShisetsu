@@ -1,0 +1,12 @@
+.p-login {
+  min-height: calc(100vh - #{$footerHeight} - #{$headerHeight});
+  padding: 30px 0;
+  background: $bgGrey;
+  @include media() {
+    min-height: calc(100vh - #{$footerHeight} - #{$headerMdHeight});
+    padding: 10px 0;
+  }
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}

@@ -1,0 +1,47 @@
+.Panel {
+  max-width: 100%;
+  width: 300px;
+  color: $white;
+  position: relative;
+  border-radius: $radiusBasis;
+  transition: $transitionBasis;
+  overflow: hidden;
+  z-index: 1;
+  outline: none;
+  &.--code1 {
+    background-color: $colorBousai;
+  }
+  &.--code2 {
+    background-color: $colorShokuhin;
+  }
+  &.--code3 {
+    background-color: $colorShomikigen;
+  }
+  &.--code4 {
+    background-color: $colorKodoiryo;
+  }
+  @include baseClickStyle(6px, 14px, -8px, $darkBlue2);
+  .Panel_content {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+  .Panel_icon {
+    background-color: $grey;
+    width: 140px;
+    height: 100px;
+    pointer-events: none;
+    flex-shrink: 0;
+  }
+  .Panel_text {
+    flex-grow: 1;
+    padding: 8px;
+    font-size: $titleSize2;
+    text-align: center;
+    pointer-events: none;
+  }
+
+  &:hover {
+    background: $orange2;
+  }
+}

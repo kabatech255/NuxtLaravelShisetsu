@@ -1,0 +1,82 @@
+.BookmarkCard {
+  width: 100%;
+  max-width: 400px;
+  height: 100%;
+  margin: 0 auto;
+  border-radius: $radiusBasis;
+  position: relative;
+  z-index: 1;
+  .BookmarkCard_overlay {
+    transition: 0.4s;
+    pointer-events: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    opacity: 0.6;
+  }
+  .BookmarkCard_body {
+    display: block;
+    width: 100%;
+    position: relative;
+    transition: 0.4s;
+    transform-origin: left top;
+    @include baseClickStyle();
+    .BookmarkCard_bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: $radiusBasis;
+      z-index: -1;
+    }
+  }
+  .BookmarkCard_thumb {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%;
+    overflow: hidden;
+    border-radius: $radiusBasis $radiusBasis 0 0 / #{$radiusBasis} $radiusBasis 0 0;
+  }
+  .BookmarkCard_image {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0);
+  }
+  .BookmarkCard_bottom {
+    padding: 5px 10px;
+    color: $white;
+  }
+  .BookmarkCard_row {
+    padding: 5px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &.--right {
+      justify-content: flex-end;
+    }
+
+    .BookmarkCard_col {
+      font-weight: bold;
+    }
+  }
+
+  &.--wide {
+    z-index: 2;
+    .BookmarkCard_overlay {
+      pointer-events: initial;
+      width: 100vw;
+      height: 100vh;
+      background: $black;
+    }
+    .BookmarkCard_body {
+      position: fixed;
+      //top: 50%;
+      //left: 50%;
+      max-width: 500px;
+      max-height: 1000px;
+      transform: scale3d(2, 2, 1);
+    }
+  }
+}

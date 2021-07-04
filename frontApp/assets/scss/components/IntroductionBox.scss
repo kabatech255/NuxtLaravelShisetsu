@@ -1,0 +1,163 @@
+.IntroductionBox {
+
+  .IntroductionBox_content {
+    display: flex;
+    height: calc(100vh - #{$headerHeight});
+    @include media() {
+      height: calc(100vh - #{$headerMdHeight});
+    }
+    max-height: 600px;
+  }
+
+  .IntroductionBox_descWrapper,
+  .IntroductionBox_images {
+    flex-grow: 1;
+    width: 100%;
+  }
+
+  .IntroductionBox_images {
+    display: grid;
+    grid-template-rows: 50% 50%;
+    grid-template-columns: 50% 50%;
+    position: relative;
+
+    &::after {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      opacity: 0.2;
+      background: $black;
+      @include media() {
+        display: none;
+      }
+    }
+  }
+
+  .IntroductionBox_image {
+    background-size: cover;
+    background-position: center;
+  }
+
+  .IntroductionBox_descWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: $grey3;
+    color: $white;
+  }
+  .IntroductionBox_desc {
+    padding: 40px 60px;
+    width: 100%;
+    flex-grow: 1;
+    position: relative;
+  }
+
+  .IntroductionBox_guest {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    transform: translate3d(0, calc(100% + 20px), 0);
+  }
+
+  .IntroductionBox_title {
+    font-size: $titleSize2;
+    font-weight: normal;
+    margin-bottom: 20px;
+  }
+
+  .IntroductionBox_icons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .IntroductionBox_iconWrapper {
+    width: 100%;
+    flex-grow: 1;
+    margin: 0 5px;
+    text-align: center;
+  }
+
+  .IntroductionBox_icon {
+    border: 1px solid $white;
+    border-radius: 9999px;
+    background: $white;
+    width: 90px;
+    height: 90px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: $primaryColor;
+    margin: 0 auto;
+    @include baseBoxShadow();
+  }
+
+  .IntroductionBox_iconSrc {
+    font-size: $titleSizeBasis;
+    font-weight: 100;
+  }
+
+  .IntroductionBox_iconText {
+    font-size: $fontSizeSm;
+    margin: 5px 0 0;
+  }
+
+  &:nth-of-type(even) {
+    background: $cream;
+    .IntroductionBox_descWrapper {
+      order: 2;
+      background: $primaryColor;
+    }
+  }
+
+  @include media() {
+    display: block;
+    position: relative;
+    .IntroductionBox_descWrapper,
+    .IntroductionBox_images {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+    .IntroductionBox_desc {
+      padding: 25px 20px;
+    }
+    .IntroductionBox_descWrapper {
+      z-index: 2;
+      background-color: transparent;
+      &::after {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: $black;
+        opacity: $opacityBasis;
+        z-index: -1;
+      }
+    }
+    &:nth-of-type(even) {
+      .IntroductionBox_descWrapper {
+        background: transparent;
+        &::after {
+          background: darken($primaryColor, 15%);
+        }
+      }
+    }
+    .IntroductionBox_images {
+      z-index: 1;
+    }
+  }
+}

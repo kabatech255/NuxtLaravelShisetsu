@@ -1,0 +1,86 @@
+.HorizontalLayout {
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+
+  &.--stretch {
+    align-items: stretch;
+  }
+  .HorizontalLayout_col {
+    flex-shrink: 0;
+
+    &.--flex {
+      flex-grow: 1;
+      flex-shrink: 1;
+      width: 100%;
+      overflow-x: hidden;
+    }
+
+    &.--equal {
+      width: 100%;
+      flex-grow: 1;
+      flex-shrink: 1;
+    }
+
+    &.--w60 {
+      width: 60px;
+    }
+
+    &.--disable {
+      background: $grey3;
+    }
+
+    &.--interval {
+      margin-top: 15px;
+      &:first-of-type {
+        margin-top: 0;
+      }
+    }
+  }
+
+  &.--vertical {
+    align-items: center;
+  }
+  &.--stretch {
+    height: 100%;
+    align-items: stretch;
+  }
+
+  &.--justifyCenter {
+    justify-content: center;
+  }
+  &.--justifyEnd {
+    justify-content: flex-end;
+  }
+  &.--justifyBetween {
+    justify-content: space-between;
+  }
+
+  &.--wrap {
+    flex-wrap: wrap;
+  }
+  &.--smCol {
+    @include media(sm) {
+      flex-direction: column;
+    }
+  }
+
+  &.--fullColumn {
+    height: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    .HorizontalLayout_col {
+      &.--fixed {
+        flex-shrink: 0;
+      }
+      &.--fill {
+        flex-grow: 1;
+        flex-shrink: 1;
+      }
+      &.--cols {
+        display: flex;
+        flex-direction: column;
+      }
+    }
+  }
+}

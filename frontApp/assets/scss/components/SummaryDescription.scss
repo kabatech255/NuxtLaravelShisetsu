@@ -1,0 +1,21 @@
+.SummaryDescription {
+  border: 2px solid $grey;
+  padding: 25px 10px;
+  position :relative;
+  width: 100%;
+  height: 100%;
+  .SummaryDescription_title {
+    position: absolute;
+    top: 0;
+    left: 10px;
+    transform: translate3d(0, -50%, 0);
+    background: $white;
+    color: $grey2;
+    padding: 0 5px;
+    display: flex;
+    align-items: center;
+  }
+  .SummaryDescription_value {
+    white-space: pre-line;
+  }
+}

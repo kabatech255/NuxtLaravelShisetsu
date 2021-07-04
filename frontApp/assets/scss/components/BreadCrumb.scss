@@ -1,0 +1,53 @@
+.BreadCrumb {
+  display: block;
+  border-bottom: 3px solid $grey;
+  &.--borderless {
+    border-bottom: 0;
+  }
+  &.--paddless {
+    .BreadCrumb_list {
+      padding: 0;
+    }
+  }
+  .BreadCrumb_list {
+    padding: 20px;
+    max-width: $baseWidth;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+  }
+  .BreadCrumb_item:not(:first-of-type) {
+    margin-left: 10px;
+    padding-left: 15px;
+    text-align: center;
+    color: $black2;
+    position: relative;
+  }
+  .BreadCrumb_icon {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    font-size: $iconSize2;
+    width: 15px;
+    transform: translate3d(-100%, -50%, 0);
+  }
+  .BreadCrumb_item:not(:last-of-type) {
+    padding-right: 15px;
+  }
+  .BreadCrumb_link {
+    color: $primaryColor;
+    font-size: $fontSizeSm;
+    font-weight: bold;
+    cursor: pointer;
+    &.--current {
+      color: $black2;
+      pointer-events: none;
+    }
+  }
+
+  @include media('sm') {
+    .BreadCrumb_list {
+      padding: 15px 10px;
+    }
+  }
+}

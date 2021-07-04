@@ -1,0 +1,28 @@
+.TabList {
+  width: 100%;
+  overflow-x: hidden;
+  .TabList_menu {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow-x: scroll;
+    @include verticalScrollbarStyle();
+  }
+  .TabList_item {
+    flex-shrink: 0;
+    min-width: 70px;
+    text-align: center;
+    border-bottom: 2px solid $disabledColor;
+    color: $disabledColor;
+    padding: 5px 10px;
+    cursor: pointer;
+    &.--large {
+      padding: 10px;
+    }
+    &.--active {
+      border-color: $primaryColor;
+      color: $primaryColor;
+      pointer-events: none;
+    }
+  }
+}

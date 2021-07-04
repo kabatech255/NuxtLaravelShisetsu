@@ -1,0 +1,62 @@
+.Table {
+  width: 100%;
+  overflow-x: scroll;
+  @include verticalScrollbarStyle();
+  .Table_ent {
+    width: 100%;
+    table-layout:fixed;
+    margin: 0 auto;
+    td {
+      line-height: 1.2;
+      &.--ellipsis {
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+      }
+    }
+    tr {
+      margin: 0 auto;
+    }
+    thead {
+      border-bottom: 1px solid $grey;
+      td {
+        font-size: 1.2rem;
+        font-weight: bold;
+        padding: 10px 6px;
+        &.--sort {
+          cursor: pointer;
+        }
+      }
+    }
+    tbody {
+      td {
+        padding: 10px 6px;
+      }
+    }
+  }
+  .Table_sortIcon {
+    font-size: 2rem;
+    padding: 0;
+    width: 6px;
+  }
+  &.--border, &.--lattice {
+    tbody {
+      tr:not(:first-of-type) {
+        border-top: 1px solid $grey;
+      }
+    }
+  }
+  &.--lattice {
+    .Table_ent {
+      border: 1px solid $grey;
+    }
+    td:not(:last-of-type) {
+      border-right: 1px solid $grey;
+    }
+  }
+  &.--stripe {
+    tbody tr:nth-of-type(even) {
+      background: lighten($darkBlue2, 70%);
+    }
+  }
+}

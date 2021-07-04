@@ -1,0 +1,20 @@
+.p-select-shop {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  @include media() {
+    min-height: calc(100vh - #{$mdSidebarHeight});
+  }
+  .p-select-shop-row {
+    &.--fixed {
+      flex-grow: 0;
+      flex-shrink: 0;
+    }
+    &.--fill {
+      flex-grow: 1;
+      width: 100%;
+      display: flex;
+      align-items: center;
+    }
+  }
+}

@@ -1,0 +1,115 @@
+.AuthNav {
+  display: inline-block;
+  &.--md {
+    display: none;
+    @include media() {
+      display: inline-block;
+      position: fixed;
+
+    }
+  }
+  transition: $transitionBasis;
+  color: $fontColorBasis;
+  position: relative;
+  width: 36px /*a*/;
+  height: 36px;
+  .AuthNav_mask {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: transparent;
+    pointer-events: none;
+    z-index: -1;
+    &.--active {
+      pointer-events: initial;
+    }
+  }
+  .AuthNav_authorIcon {
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0);
+    cursor: pointer;
+    color: $white;
+    border-radius: 9999px;
+    background-position: center;
+    background-size: cover;
+    background-color: $grey2;
+    transition: $transitionBasis;
+    overflow: hidden;
+    &::after {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: $black;
+      opacity: 0.2;
+    }
+    &:hover {
+      opacity: $opacityBasis;
+    }
+  }
+  .AuthNav_menuWrapper {
+    display: block;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    transform: translate3d(20px /*b*/, 12px, 0);
+    background: $grey;
+    font-size: $fontSizeSm;
+    margin: 5px;
+    min-width: 200px;
+    border-radius: $radiusBasis;
+    transition: $transitionBasis;
+    opacity: 0;
+    pointer-events: none;
+    @include baseBoxShadow(2px, 10px, -5px, $darkBlue2);
+    &.--active {
+      opacity: 1;
+      pointer-events: initial;
+    }
+    &::before {
+      content: '';
+      display: inline-block;
+      position: absolute;
+      top: 0;
+      // a / 2 + b - (c + d)
+      right: calc(36px / 2 + 20px - (6px + 5px));
+      transform-origin: top center;
+      transform: translate3d(0, -12px, 0);
+      width: 0;
+      height: 0;
+      border-width: 0 6px/*c*/ 12px 6px/*d*/;
+      border-style: solid;
+      border-color: transparent transparent $grey transparent;
+    }
+  }
+  .AuthNav_menuTitle {
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid $grey2;
+  }
+  .AuthNav_menu {
+    text-align: left;
+    .AuthNav_menuItem {
+      display: block;
+      padding: 10px 10px 10px 20px;
+      cursor: pointer;
+      transition: $transitionBasis;
+      &:hover {
+        opacity: 0.6;
+        background: lighten($grey, 5%);
+        box-shadow: 0 3px 10px -5px $darkBlue2;
+      }
+      &:last-of-type {
+        border-radius: 0 0 $radiusBasis #{$radiusBasis} / 0 0 $radiusBasis $radiusBasis;
+      }
+    }
+  }
+}

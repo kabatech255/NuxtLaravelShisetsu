@@ -1,0 +1,32 @@
+.MessageDialog {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 12px;
+  background: $successColor;
+  z-index: $dialogZIndex;
+  text-align: center;
+  transition: $transitionBasis;
+  &.--error {
+    background: $errorColor;
+  }
+  &.--hidden {
+    pointer-events: none;
+    opacity: 0;
+  }
+  .MessageDialog_text {
+    font-size: $fontSizeBasis;
+    font-weight: bold;
+    color: $white;
+    letter-spacing: 0.1em;
+  }
+  @include media() {
+    .MessageDialog_text {
+      font-size: $fontSizeBasis;
+      font-weight: 700;
+    }
+
+  }
+}

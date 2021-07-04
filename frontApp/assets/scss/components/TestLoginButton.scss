@@ -1,0 +1,14 @@
+.TestLoginButton {
+
+  @include media() {
+    &.--mdCenter {
+      text-align: center;
+    }
+  }
+  @include media('sm') {
+    &.--sm-b12 {
+      position: relative;
+      bottom: 12px;
+    }
+  }
+}

@@ -1,0 +1,24 @@
+variable "dns_name" {}
+variable "zone_id" {}
+variable "domain_name" {}
+
+data "aws_route53_zone" "default" {
+  name = var.domain_name
+}
+
+data "aws_acm_certificate" "default" {
+  domain = "www.${data.aws_route53_zone.default.name}"
+  statuses = ["ISSUED"]
+}
+
+resource "aws_route53_record" "default" {
+  zone_id = data.aws_route53_zone.default.zone_id
+  name = "www.${data.aws_route53_zone.default.name}"
+  type = "A"
+
+  alias {
+    name = var.dns_name
+    zone_id = var.zone_id
+    evaluate_target_health = true
+  }
+}

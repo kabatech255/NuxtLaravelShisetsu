@@ -1,0 +1,316 @@
+$dayBorder: 1px solid #b8c2cc;
+$dayBorderHighlight: 1px solid #b8c2cc;
+$dayWidth: 90px;
+$dayHeight: 90px;
+$weekdayBg: #f8fafc;
+$weekdayBorder: 1px solid #eaeaea;
+$detailTranslateBasis: translate3d(-50%, 100%, 0);
+$arrowTranslateBasis: calc(#{$dayWidth} * 3 / 2);
+
+@mixin detailStyleBasis() {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transition: $transitionBasis;
+  transform-origin: top center;
+  transform: $detailTranslateBasis scale3d(0, 0, 1);
+  display: block;
+  width: 270px;
+  min-height: 160px;
+  padding: 20px;
+  background: $white;
+  border: 1px solid $grey2;
+  border-radius: $radiusBasis;
+  z-index: 1;
+  @include baseBoxShadow();
+
+  &.--active {
+    transform: $detailTranslateBasis scale3d(1, 1, 1);
+  }
+  &::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 0;
+    border-width: 0 4px 5px 4px;
+    border-style: solid;
+    border-color: transparent transparent $grey2 transparent;
+    position: absolute;
+    top: 0;
+    right: $arrowTranslateBasis;
+    transform: translate3d(4px, -5px, 0);
+  }
+  &::before {
+    content: '';
+    display: block;
+    width: 0;
+    height: 0;
+    border-width: 0 4px 5px 4px;
+    border-style: solid;
+    border-color: transparent transparent $white transparent;
+    position: absolute;
+    top: 0;
+    right: $arrowTranslateBasis;
+    transform: translate3d(4px, -4px, 0);
+    z-index: 1;
+  }
+}
+
+.CustomCalendar {
+  width: 100%;
+  border-radius: 0;
+  border: 0;
+  font-family: inherit;
+  .CustomCalendar_attr {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    height: 100%;
+    position: relative;
+    &.--today {
+      .CustomCalendar_attrLabel {
+        color: $white;
+        background: darken($blue, 15%);
+      }
+    }
+  }
+  .CustomCalender_film {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: $primaryColor;
+    opacity: 0;
+    transition: $transitionBasis;
+    cursor: pointer;
+    &:hover {
+      opacity: 0.2;
+    }
+  }
+  .CustomCalendar_attrLabel {
+    --text-opacity: 1;
+    color: $black2;
+    font-weight: bold;
+    border-radius: 9999px;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .CustomCalendar_attrDay {
+    line-height: 1;
+  }
+  .CustomCalendar_attrBody {
+    flex-grow: 1;
+    padding: 3px;
+    width: 100%;
+  }
+  .CustomCalendar_attrBox {
+    position: relative;
+    width: 100%;
+  }
+  .CustomCalendar_attrValue {
+    --test-opacity: 1;
+    display: inline-block;
+    padding: 3px;
+    font-size: $fontSizeMinimum;
+    font-weight: bold;
+    margin-bottom: 5px;
+    border-radius: 3px;
+    line-height: 1.25;
+    width: 100%;
+    cursor: pointer;
+    transition: $transitionBasis;
+    &:hover {
+      opacity: $opacityBasis;
+    }
+  }
+  .CustomCalendar_detail {
+    @include detailStyleBasis();
+  }
+  .CustomCalendar_detailRow {
+    display: flex;
+    align-items: flex-start;
+    &.--vertical {
+      align-items: center;
+    }
+  }
+  .CustomCalendar_detailCol {
+    flex-grow: 1;
+    font-size: $fontSizeSm;
+    &.--label {
+      flex-shrink: 0;
+      flex-grow: 0;
+      width: 70px;
+      padding-right: 15px;
+      text-align: right;
+      font-weight: bold;
+    }
+    &.--title {
+      flex-grow: 0;
+    }
+    &.--titleLabel {
+      flex-shrink: 0;
+      flex-grow: 0;
+      width: 70px;
+      padding-right: 15px;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+    }
+  }
+  .CustomCalendar_overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    &.--active {
+      display: block;
+    }
+  }
+  .CustomCalendar_operator {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-bottom: 20px;
+  }
+  .CustomCalendar_operatorItem {
+    padding: 3px;
+    border-radius: 9999px;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+    &::after {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background: $black2;
+      opacity: $opacityBasis;
+    }
+  }
+  .CustomCalendar_operatorIcon {
+    font-size: $iconSizeSm;
+    color: $white;
+  }
+  .CustomCalender_titleLabel {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    border-radius: $radiusBasis;
+  }
+  .CustomCalendar_detailTitle {
+    font-size: $fontSizeXl;
+  }
+  .CustomCalendar_secretMark {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    color: $grey3;
+  }
+  & .vc-header {
+    background-color: #f1f5f8;
+    padding: 10px 0;
+  }
+  & .vc-weeks {
+    padding: 0 !important;
+  }
+  & .vc-weekday {
+    background-color: $weekdayBg;
+    border-bottom: $weekdayBorder;
+    border-top: $weekdayBorder;
+    padding: 5px 0;
+  }
+  & .vc-day {
+    text-align: left;
+    min-height: $dayHeight !important;
+    min-width: $dayWidth !important;
+    background-color: white;
+    z-index: initial !important;
+    &.weekday-1 {
+      background-color: #ffefef;
+      .CustomCalendar_detail {
+        left: 0;
+        transform-origin: top left calc(#{$dayWidth} / 2);
+        transform: translate3d(0, 100%, 0) scale3d(0, 0, 1);
+        &.--active {
+          transform: translate3d(0, 100%, 0) scale3d(1, 1, 1);
+        }
+        &::after,
+        &::before {
+          right: initial;
+          left: calc(#{$dayWidth} / 2);
+        }
+        &::before {
+          transform: translate3d(-4px, -4px, 0);
+        }
+        &::after {
+          transform: translate3d(-4px, -5px, 0);
+        }
+      }
+    }
+    &.weekday-7 {
+      background-color: #eff8ff;
+      .CustomCalendar_detail {
+        left: initial;
+        right: 0;
+        transform-origin: top right calc(#{$dayWidth} / 2);
+        transform: translate3d(0, 100%, 0) scale3d(0, 0, 1);
+        &.--active {
+          transform: translate3d(0, 100%, 0) scale3d(1, 1, 1);
+        }
+        &::after,
+        &::before {
+          right: calc(#{$dayWidth} / 2);
+        }
+        &::before {
+          transform: translate3d(4px, -4px, 0);
+        }
+        &::after {
+          transform: translate3d(4px, -5px, 0);
+        }
+      }
+    }
+    &:not(.on-bottom) {
+      border-bottom: $dayBorder;
+      &.weekday-1 {
+        border-bottom: $dayBorderHighlight;
+      }
+    }
+    &:not(.on-right) {
+      border-right: $dayBorder;
+    }
+  }
+  & .vc-pane-layout {
+    border: $dayBorder;
+  }
+
+  @include media() {
+    .CustomCalendar_detail {
+      padding: 10px;
+    }
+    .CustomCalendar_secretMark {
+      top: 10px;
+      left: 10px;
+    }
+      .CustomCalendar_operator {
+      padding-bottom: 10px;
+    }
+
+    }
+  @include media('sm-w') {
+    //.CustomCalendar_detail {
+    //  width: 220px;
+    //}
+  }
+}
