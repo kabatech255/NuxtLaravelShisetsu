@@ -8,7 +8,7 @@
 
 # リンク
 
-- サイトリンク：https://exam.kensa-system.net
+- サイトリンク： ~~`https://exam.kensa-system.net`~~ 公開終了しました
 
 #「テストユーザーとして試す」
 
